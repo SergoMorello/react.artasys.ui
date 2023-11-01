@@ -1,9 +1,12 @@
-import Form, { useForm } from "./Form";
+import Form, { useForm, FormElement } from "./Form";
+import Element, { IElement } from "./Form/Element";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Spinner from "./Spinner";
 import File, { TFileData, TFileMime } from "./File";
+import Button from "./Button";
+import UploadImages, { TUploadImageData, IUploadImages } from "./UploadImages";
 declare const UI: {};
-export { Form, useForm, Input, TextArea, Spinner, File };
-export type { TFileData, TFileMime };
+export { Form, FormElement, Element, useForm, Input, TextArea, Spinner, File, Button, UploadImages };
+export type { TFileData, TFileMime, TUploadImageData, IUploadImages, IElement };
 export default UI;
