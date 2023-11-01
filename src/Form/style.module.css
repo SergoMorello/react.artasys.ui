@@ -1,0 +1,30 @@
+/* Form */
+
+.container {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.container > .wait-indicator {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #FFFFFF9F;
+	backdrop-filter: blur(2px);
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.container.wait > .wait-indicator {
+	z-index: 1;
+	opacity: 1;
+}

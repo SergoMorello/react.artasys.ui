@@ -1,0 +1,16 @@
+.container > input {
+	width: calc(100% - 10px);
+    margin: 15px 0 15px 0;
+    font-size: 18px;
+    padding: 10px 0 10px 15px;
+    border: 2px solid #E2E8F2;
+    resize: none;
+    outline: none;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+}
+
+.container > input[type="text"]:focus {
+	border: 2px solid #FBA31D;
+	border-bottom: 2px solid #000;
+}
