@@ -15,7 +15,8 @@ import File,{
 import Button from "./Button";
 import UploadImages,{
 	TUploadImageData,
-	IUploadImages
+	IUploadImages,
+	TImageData
 } from "./UploadImages";
 
 const UI = {
@@ -39,6 +40,7 @@ export type {
 	TFileMime,
 	TUploadImageData,
 	IUploadImages,
+	TImageData,
 	IElement
 };
 export default UI;

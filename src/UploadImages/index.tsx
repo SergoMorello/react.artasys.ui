@@ -2,8 +2,12 @@ import UploadImages,{
 	TUploadImageData,
 	IUploadImages
 } from "./UploadImages";
+import {
+	TImageData
+} from "./Image";
 export type {
 	TUploadImageData,
-	IUploadImages
+	IUploadImages,
+	TImageData
 };
 export default UploadImages;
