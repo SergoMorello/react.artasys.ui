@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Spinner from "../Spinner";
-import { TFileData } from "../File";
+import type { TFileData } from "../File";
 import styles from "./style.module.css";
 
 import { TUploadImageData } from "./UploadImages";
