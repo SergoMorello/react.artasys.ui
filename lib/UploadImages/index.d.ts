@@ -1,4 +1,5 @@
-import UploadImages, { TUploadImageData, IUploadImages } from "./UploadImages";
+import UploadImages, { IUploadImages } from "./UploadImages";
+import type { IImage } from "./Image";
 import { TImageData } from "./Image";
-export type { TUploadImageData, IUploadImages, TImageData };
+export type { IUploadImages, TImageData, IImage };
 export default UploadImages;
