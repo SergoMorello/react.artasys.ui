@@ -21,6 +21,7 @@ export interface IImage extends TFileData {
 const Image = ({onChange, onClick, onId, onRemove, ...props}: IImage) => {
 	const { base64, src } = props;
 	const [wait, setWait] = useState(true);
+	const confirmRemove = useRef(false);
 	const currentId = useRef<string | number | undefined>();
 	const setId = (id: string | number) => {
 		currentId.current = id;
@@ -29,10 +30,6 @@ const Image = ({onChange, onClick, onId, onRemove, ...props}: IImage) => {
 	};
 
 	const handleClick = () => {
-		//test remove
-		// if (typeof onRemove === 'function') {
-		// 	onRemove();
-		// }
 		if (typeof onClick === 'function') {
 			onClick({
 				...props,
@@ -47,6 +44,26 @@ const Image = ({onChange, onClick, onId, onRemove, ...props}: IImage) => {
 		setWait(false);
 	};
 
+	const handleRemove = (e: React.MouseEvent<HTMLSpanElement>) => {
+		if (!e.target) return;
+		const element = (e.target as HTMLSpanElement);
+		
+		const remove = () => {
+			if (!confirmRemove.current) return;
+			confirmRemove.current = false;
+			element.blur();
+			if (typeof onRemove === 'function') {
+				onRemove();
+			}
+		};
+		remove();
+		confirmRemove.current = true;
+	};
+
+	const handleCancelRemove = () => {
+		confirmRemove.current = false;
+	};
+
 	useEffect(() => {
 		if (typeof onChange !== 'function' || src) return;
 		onChange({
@@ -58,6 +75,7 @@ const Image = ({onChange, onClick, onId, onRemove, ...props}: IImage) => {
 	}, []);
 
 	return(<span className={styles['image']} onClick={handleClick}>
+		<span className={styles['close']} onClick={handleRemove} onBlur={handleCancelRemove} tabIndex={1}/>
 		<img src={src ?? base64?.toString()} onLoad={handleLoad}/>
 		{wait && <span className={styles['wait']}>
 			<Spinner size="small" color="contrast"/>
