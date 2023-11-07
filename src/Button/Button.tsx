@@ -3,13 +3,15 @@ import styles from "./style.module.css";
 import Spinner from "../Spinner";
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-	wait?: boolean
+	wait?: boolean;
+	classNameContainer?: string;
+	styleContainer?: React.HTMLAttributes<HTMLDivElement>['style'];
 }
 
-const Button = ({children, wait = false, ...props}: IButton) => {
+const Button = ({children, className, classNameContainer, styleContainer, wait = false, ...props}: IButton) => {
 
-	return(<div className={styles['container']}>
-		<button {...props}>{children}</button>
+	return(<div className={styles['container'] + (classNameContainer ? ' ' + classNameContainer : '')} style={styleContainer}>
+		<button {...props} className={className}>{children}</button>
 		<div className={styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
 			<Spinner size="small" color="contrast"/>
 		</div>
