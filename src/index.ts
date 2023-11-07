@@ -18,6 +18,7 @@ import UploadImages,{
 	TImageData,
 	IImage
 } from "./UploadImages";
+import Checkbox from "./Checkbox";
 
 const UI = {
 	
@@ -33,7 +34,8 @@ export {
 	Spinner,
 	File,
 	Button,
-	UploadImages
+	UploadImages,
+	Checkbox
 };
 export type {
 	TFileData,

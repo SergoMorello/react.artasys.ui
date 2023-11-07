@@ -8,6 +8,7 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
     classNameContainer?: string;
     beforeElement?: React.ReactElement;
     afterElement?: React.ReactElement;
+    hiddenContainer?: boolean;
 }
-declare const Element: ({ children, beforeElement, afterElement, error, placeholder, disabled, styleContainer, classNameContainer, ...props }: IElement) => JSX.Element;
+declare const Element: ({ children, beforeElement, afterElement, error, placeholder, disabled, styleContainer, classNameContainer, hiddenContainer, ...props }: IElement) => JSX.Element;
 export default Element;

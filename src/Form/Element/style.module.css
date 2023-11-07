@@ -11,6 +11,10 @@
 	z-index: 0;
 }
 
+.container.hidden {
+	border: 0;
+}
+
 .element {
 	align-self: stretch;
 	width: 100%;

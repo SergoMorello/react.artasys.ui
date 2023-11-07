@@ -1,0 +1,74 @@
+/* Checkbox */
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	height: 100%;
+	cursor: pointer;
+	user-select: none;
+	gap: 10px;
+}
+
+.container > input {
+	display: none;
+}
+
+.text {
+	color: #1D1D1B;
+	font-size: 1.1em;
+}
+
+.indicator {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #5EBED6;
+	background-color: #BED4DB;
+	width: 20px;
+	height: 20px;
+	aspect-ratio: 1/1;
+}
+
+.container > input[type="radio"] ~ .indicator {
+	border-radius: 50%;
+}
+
+.container:hover > .indicator {
+	background-color: #5EBED65F;
+}
+
+.indicator::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 35%;
+    height: 70%;
+    border: solid #1D1D1B;
+    border-width: 0 2px 2px 0;
+    transform: rotate( 45deg);
+	scale: 0;
+	opacity: 0;
+	transition: scale 0.1s, opacity 0.1s;
+}
+
+.container > input[type="radio"] ~ .indicator::before {
+	border-width: 0;
+	border-radius: inherit;
+	top: unset;
+	transform: unset;
+	width: 70%;
+	height: 70%;
+	background-color: #1D1D1B;
+}
+
+.container > input:checked ~ .indicator {
+	background-color: #5EBED65F;
+}
+
+.container > input:checked ~ .indicator::before {
+	scale: 1;
+	opacity: 1;
+}
