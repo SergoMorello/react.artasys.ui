@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.css";
 
-type TSpinner = {
+export type TSpinner = {
 	size?: 'small' | 'middle' | 'large';
 	color?: 'default' | 'contrast';
 }

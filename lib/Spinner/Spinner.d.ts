@@ -1,4 +1,4 @@
-type TSpinner = {
+export type TSpinner = {
     size?: 'small' | 'middle' | 'large';
     color?: 'default' | 'contrast';
 };
