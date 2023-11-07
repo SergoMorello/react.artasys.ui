@@ -31,9 +31,11 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 			style={styleContainer}
 		>
 			{beforeElement}
-			{typeof children === 'function' ? children(props) : null}
+			<div className={styles['element']}>
+				{typeof children === 'function' ? children(props) : null}
+				{placeholder && <span className={styles['placeholder']}>{placeholder}</span>}
+			</div>
 			{afterElement}
-			{placeholder && <span className={styles['placeholder']}>{placeholder}</span>}
 		</label>
 		{currentError && <div className={styles['error']}>{currentError}</div>}
 	</>);

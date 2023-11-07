@@ -4,21 +4,27 @@
 	display: flex;
     align-items: center;
 	width: 100%;
-	min-height: 50px;
+	min-height: 45px;
 	position: relative;
     border: 1px solid #CCCCCC;
     border-radius: 3px;
 	z-index: 0;
 }
 
-.container > input, .container > textarea {
+.element {
+	align-self: stretch;
+	width: 100%;
+	min-height: 100%;
+}
+
+.element > input, .element > textarea {
 	width: 100% !important;
+	height: 100% !important;
 	min-height: 100% !important;
 	max-height: 500px !important;
 	max-height: 50dvh !important;
-	padding: 10px 5px !important;
 	margin: 0 !important;
-    font-size: 1.3em !important;
+    font-size: 1.3em;
 	border: 0 !important;
 	box-sizing: border-box !important;
 	background-color: transparent !important;
@@ -30,24 +36,25 @@
 	background-color: #EFEFEF;
 }
 
-.container > input:-webkit-autofill,
-.container > input:-webkit-autofill:hover, 
-.container > input:-webkit-autofill:focus, 
-.container > input:-webkit-autofill:active{
+.element > input:-webkit-autofill,
+.element > input:-webkit-autofill:hover, 
+.element > input:-webkit-autofill:focus, 
+.element > input:-webkit-autofill:active{
 	-webkit-background-clip: text;
 }
 
-.container > input:focus {
+.element > input:focus {
 	outline: none;
 }
 
-.container > .placeholder {
+.element > .placeholder {
 	position: absolute;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	top: 0;
-	left: 5px;
+	margin-left: 5px;
+	height: 100%;
 	color: #7A7A73;
 	font-size: 1.2em;
 	z-index: -1;
@@ -55,7 +62,11 @@
 	transition: transform 0.3s;
 }
 
-.container > .placeholder::before {
+.element > textarea ~ .placeholder {
+	max-height: 2em;
+}
+
+.element > .placeholder::before {
 	content: "";
 	position: absolute;
 	display: block;
@@ -65,16 +76,16 @@
 	z-index: -1;
 }
 
-.container > input:required ~ .placeholder::after {
+.element > input:required ~ .placeholder::after {
 	content: "*";
 }
 
-.container > input:focus ~ .placeholder,
-.container > textarea:focus ~ .placeholder,
-.container > input:not([value=""]) ~ .placeholder,
-.container > textarea:not(:empty) ~ .placeholder,
-.container > input:not(:empty) ~ .placeholder {
-	transform: translate(-10%, -55%) scale(0.8);
+.element > input:focus ~ .placeholder,
+.element > textarea:focus ~ .placeholder,
+.element > input:not([value=""]) ~ .placeholder,
+.element > textarea:not(:empty) ~ .placeholder,
+.element > input:not(:empty) ~ .placeholder {
+	transform: translate(-10%, -50%) scale(0.8);
 	z-index: 0;
 }
 
@@ -82,7 +93,7 @@
 	border-color: #FF6D6D;
 }
 
-.container.error > .placeholder {
+.container.error .placeholder {
 	color: #FF6D6D;
 }
 
