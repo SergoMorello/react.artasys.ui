@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-	index: '/src/index.ts',
+	index: '/src/index.ts'
   },
   target: 'web',
   mode: 'production', //production | development
@@ -46,7 +46,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
 	library: 'UI',
 	libraryTarget: 'umd',
-	chunkFilename: '[name].chunk.js',
 	auxiliaryComment: 'Arta System UI'
   },
   externals: {
