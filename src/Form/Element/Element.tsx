@@ -25,7 +25,7 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 		setCurrentError(error ?? '');
 	},[error]);
 
-	const classes = ['ui-form-element'];
+	const classes = ['ui-form-element-container'];
 
 	classes.push(styles['container']);
 	if (currentError) classes.push(styles['error']);
@@ -39,13 +39,13 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 			style={styleContainer}
 		>
 			{beforeElement}
-			<div className={styles['element']}>
+			<div className={'ui-form-element ' + styles['element']}>
 				{typeof children === 'function' ? children(props) : null}
-				{placeholder && <span className={styles['placeholder']}>{placeholder}</span>}
+				{placeholder && <span className={'ui-form-element-placeholder ' + styles['placeholder']}>{placeholder}</span>}
 			</div>
 			{afterElement}
 		</label>
-		{currentError && <div className={styles['error']}>{currentError}</div>}
+		{currentError && <div className={'ui-form-error ' + styles['error']}>{currentError}</div>}
 	</>);
 }
 
