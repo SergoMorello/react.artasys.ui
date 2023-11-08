@@ -12,7 +12,7 @@ const Checkbox = forwardRef<HTMLInputElement, ICheckbox>(({type = 'checkbox', hi
 
 	return(<Element {...props} hiddenContainer={hiddenContainer}>
 		{(props) => <div className={'ui-checkbox-container ' + styles['container']}>
-				<input {...props} className={'ui-checkbox' + props.className ? ' ' + props.className : ''} type={type} ref={ref}/>
+				<input {...props} className={'ui-checkbox' + (props.className ? ' ' + props.className : '')} type={type} ref={ref}/>
 				<span className={'ui-checkbox-indicator ' + styles['indicator']}/>
 				<span className={'ui-checkbox-text ' + styles['text']}>{placeholder}</span>
 			</div>}

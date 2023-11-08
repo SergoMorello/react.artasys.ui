@@ -19,7 +19,7 @@ const Button = ({children, className, classNameContainer, styleContainer, spinne
 	if (classNameContainer) classes.push(classNameContainer);
 
 	return(<div className={classes.join(' ')} style={styleContainer}>
-		<button {...props} className={'ui-button' + className ? ' ' + className : ''}>{children}</button>
+		<button {...props} className={'ui-button' + (className ? ' ' + className : '')}>{children}</button>
 		<div className={'ui-button-spinner ' + styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
 			<Spinner size="small" color={spinnerColor}/>
 		</div>
