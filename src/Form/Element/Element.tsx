@@ -25,7 +25,7 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 		setCurrentError(error ?? '');
 	},[error]);
 
-	const classes = [];
+	const classes = ['ui-form-element'];
 
 	classes.push(styles['container']);
 	if (currentError) classes.push(styles['error']);

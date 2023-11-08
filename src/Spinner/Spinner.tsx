@@ -7,7 +7,15 @@ export type TSpinner = {
 }
 
 const Spinner = ({size, color = 'default'}: TSpinner) => {
-	return(<div className={styles['spinner'] + (size ? ' ' + styles[size] : '') + (color ? ' ' + styles[color] : '') + ' ' + styles['animate']}></div>);
+
+	const classes = ['ui-spinner'];
+
+	classes.push(styles['spinner']);
+	if (size) classes.push(styles[size]);
+	if (color) classes.push(styles[color]);
+	classes.push(styles['animate']);
+
+	return(<div className={classes.join(' ')}></div>);
 };
 
 export default Spinner;

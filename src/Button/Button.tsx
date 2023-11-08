@@ -13,9 +13,14 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, ...props}: IButton) => {
 
-	return(<div className={styles['container'] + (classNameContainer ? ' ' + classNameContainer : '')} style={styleContainer}>
-		<button {...props} className={className}>{children}</button>
-		<div className={styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
+	const classes = ['ui-button-container'];
+
+	classes.push(styles['container']);
+	if (classNameContainer) classes.push(classNameContainer);
+
+	return(<div className={classes.join(' ')} style={styleContainer}>
+		<button {...props} className={'ui-button ' + className}>{children}</button>
+		<div className={'ui-button-spinner' + styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
 			<Spinner size="small" color={spinnerColor}/>
 		</div>
 	</div>)

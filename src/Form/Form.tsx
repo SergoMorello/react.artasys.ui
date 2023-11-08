@@ -17,7 +17,13 @@ const Form = ({children, wait, className, onSubmit, ...props}: IForm) => {
 		}
 	};
 
-	return(<form {...props} onSubmit={submit} className={styles['container'] + (wait ? ' ' + styles['wait'] : '') + (className ? ' ' + className : '')}>
+	const classes = [];
+
+	classes.push(styles['container']);
+	if (wait) classes.push(styles['wait']);
+	if (className) classes.push(className);
+
+	return(<form {...props} onSubmit={submit} className={classes.join(' ')}>
 		{children}
 		<div className={styles['wait-indicator']}>
 			<Spinner size="large" color="contrast"/>
