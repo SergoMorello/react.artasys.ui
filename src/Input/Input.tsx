@@ -34,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	};
 
 	useEffect(() => {
-		if (!props.value) return;
+		if (typeof props.value === 'undefined') return;
 		setCurrentValue(String(props.value));
 	}, [props.value]);
 
