@@ -2,7 +2,8 @@ import {
 	useState,
 	useEffect,
 	AllHTMLAttributes,
-	ReactElement
+	ReactElement,
+	cloneElement
 } from "react";
 import styles from "./style.module.css";
 
@@ -38,12 +39,12 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 			className={classes.join(' ')}
 			style={styleContainer}
 		>
-			{beforeElement}
+			{beforeElement ? cloneElement(beforeElement, {key: 'ui-before-element'}) : null}
 			<div className={'ui-form-element ' + styles['element']}>
 				{typeof children === 'function' ? children(props) : null}
 				{placeholder && <span className={'ui-form-element-placeholder ' + styles['placeholder']}>{placeholder}</span>}
 			</div>
-			{afterElement}
+			{afterElement ? cloneElement(afterElement, {key: 'ui-after-element'}) : null}
 		</label>
 		{currentError && <div className={'ui-form-error ' + styles['error']}>{currentError}</div>}
 	</>);
