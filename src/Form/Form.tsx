@@ -1,14 +1,17 @@
 import { FormHTMLAttributes, ReactNode, FormEvent } from 'react';
 import styles from './style.module.css';
 
-import Spinner from '../Spinner';
+import Spinner,{
+	TSpinner
+} from '../Spinner';
 
 interface IForm extends FormHTMLAttributes<HTMLFormElement> {
 	children: ReactNode;
 	wait?: boolean;
+	spinnerColor?: TSpinner['color'];
 }
 
-const Form = ({children, wait, className, onSubmit, ...props}: IForm) => {
+const Form = ({children, wait, className, spinnerColor, onSubmit, ...props}: IForm) => {
 
 	const submit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -26,7 +29,7 @@ const Form = ({children, wait, className, onSubmit, ...props}: IForm) => {
 	return(<form {...props} onSubmit={submit} className={classes.join(' ')}>
 		{children}
 		<div className={styles['wait-indicator']}>
-			<Spinner size="large" color="contrast"/>
+			<Spinner color={spinnerColor}/>
 		</div>
 	</form>);
 };

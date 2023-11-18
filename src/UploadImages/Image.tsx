@@ -78,7 +78,7 @@ const Image = ({onChange, onClick, onId, onRemove, ...props}: IImage) => {
 		<span className={styles['close']} onClick={handleRemove} onBlur={handleCancelRemove} tabIndex={1}/>
 		<img src={src ?? base64?.toString()} onLoad={handleLoad}/>
 		{wait && <span className={styles['wait']}>
-			<Spinner size="small" color="contrast"/>
+			<Spinner/>
 		</span>}
 	</span>);
 };
