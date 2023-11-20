@@ -19,6 +19,7 @@ import UploadImages,{
 	IImage
 } from "./UploadImages";
 import Checkbox from "./Checkbox";
+import Progress from "./Progress";
 
 const UI = {
 	
@@ -35,7 +36,8 @@ export {
 	File,
 	Button,
 	UploadImages,
-	Checkbox
+	Checkbox,
+	Progress
 };
 export type {
 	TFileData,
