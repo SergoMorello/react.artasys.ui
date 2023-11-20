@@ -14,11 +14,15 @@ const Progress = ({value = 0, size, radius = false}: IProgress) => {
 	if (value < 0) {
 		value = 0;
 	}
+
+	const progress = radius ? (360 / 100 * value) + 'deg' : value + '%';
+
 	const classes = ['ui-progress'];
 	classes.push(styles['container']);
 	if (size) classes.push(styles[size]);
+	if (radius) classes.push(styles['radius']);
 
-	return(<div className={styles['container']} data-progress={value} style={{'--progress': (360 / 100 * value) + 'deg'} as React.CSSProperties}/>);
+	return(<div className={classes.join(' ')} data-progress={value} style={{'--progress': progress} as React.CSSProperties}/>);
 };
 
 export default Progress;
