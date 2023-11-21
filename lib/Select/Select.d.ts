@@ -3,7 +3,9 @@ import { IElement } from "../Form/Element";
 import type { IOption } from "./Option";
 export declare const Context: import("react").Context<{
     selected: string;
+    emptyValue: import("react").MutableRefObject<boolean>;
     setSelect: (value: string) => void;
+    setSelected: (value: string) => void;
     setTitle: (title: string) => void;
 }>;
 export interface ISelect extends Omit<IElement, 'children' | 'onChange'> {

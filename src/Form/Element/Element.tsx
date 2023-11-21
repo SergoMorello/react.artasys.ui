@@ -19,7 +19,7 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
 	hiddenContainer?: boolean;
 }
 
-const Element = ({children, beforeElement, afterElement, error, placeholder, disabled, styleContainer, classNameContainer, hiddenContainer, ...props}: IElement) => {
+const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, ...props}: IElement) => {
 	const [currentError, setCurrentError] = useState('');
 
 	useEffect(() => {
@@ -30,7 +30,7 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, dis
 
 	classes.push(styles['container']);
 	if (currentError) classes.push(styles['error']);
-	if (disabled) classes.push(styles['disabled']);
+	if (props.disabled) classes.push(styles['disabled']);
 	if (hiddenContainer) classes.push(styles['hidden']);
 	if (classNameContainer) classes.push(classNameContainer);
 

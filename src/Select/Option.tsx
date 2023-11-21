@@ -24,8 +24,12 @@ const Option = ({children, value, onClick, ...props}: IOption) => {
 	};
 
 	useEffect(() => {
-		if (value === context.selected && children) {
+		if (children && (value === context.selected || !context.emptyValue.current)) {
 			context.setTitle(children?.toString());
+			if (!context.emptyValue.current && value) {
+				context.setSelected(value);
+			}
+			context.emptyValue.current = true;
 		}
 	}, [context.selected]);
 

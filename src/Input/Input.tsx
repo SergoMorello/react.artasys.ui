@@ -27,6 +27,7 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	};
 
 	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+		if (props.disabled) return;
 		if (typeof onInput === 'function') {
 			onInput(e);
 		}
