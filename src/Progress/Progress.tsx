@@ -7,7 +7,7 @@ interface IProgress {
 };
 
 const Progress = ({value = 0, size, radius = false}: IProgress) => {
-	value = Number(value);
+	value = Math.ceil(Number(value) * 10) / 10;
 	if (value > 100) {
 		value = 100;
 	}

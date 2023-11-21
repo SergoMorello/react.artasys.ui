@@ -4,14 +4,17 @@ import styles from './style.module.css';
 import Spinner,{
 	TSpinner
 } from '../Spinner';
+import Progress from '../Progress';
 
 interface IForm extends FormHTMLAttributes<HTMLFormElement> {
 	children: ReactNode;
 	wait?: boolean;
+	progress?: number;
+	progressRadius?: boolean;
 	spinnerColor?: TSpinner['color'];
 }
 
-const Form = ({children, wait, className, spinnerColor, onSubmit, ...props}: IForm) => {
+const Form = ({children, wait, progress, progressRadius = true, className, spinnerColor, onSubmit, ...props}: IForm) => {
 
 	const submit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -29,7 +32,7 @@ const Form = ({children, wait, className, spinnerColor, onSubmit, ...props}: IFo
 	return(<form {...props} onSubmit={submit} className={classes.join(' ')}>
 		{children}
 		<div className={styles['wait-indicator']}>
-			<Spinner color={spinnerColor}/>
+			{typeof progress === 'number' ? <Progress radius={progressRadius} value={progress}/> : <Spinner color={spinnerColor}/>}
 		</div>
 	</form>);
 };
