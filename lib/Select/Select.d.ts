@@ -8,9 +8,9 @@ export declare const Context: import("react").Context<{
     setSelected: (value: string) => void;
     setTitle: (title: string) => void;
 }>;
-export interface ISelect extends Omit<IElement, 'children' | 'onChange'> {
+export interface ISelect extends Omit<IElement, 'children'> {
     children?: React.FunctionComponentElement<IOption>[];
-    onChange?: (value: string) => void;
+    onChangeSelect?: (value: string) => void;
 }
 declare const Select: import("react").ForwardRefExoticComponent<ISelect & import("react").RefAttributes<HTMLInputElement>>;
 export default Select;

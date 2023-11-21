@@ -3,7 +3,9 @@ import {
 	createContext,
 	useState,
 	useEffect,
-	useRef
+	useRef,
+	ChangeEvent,
+	useImperativeHandle
 } from "react";
 import Element,{
 	IElement
@@ -19,13 +21,14 @@ export const Context = createContext({
 	setTitle: (title: string) => {},
 });
 
-export interface ISelect extends Omit<IElement, 'children' | 'onChange'> {
+export interface ISelect extends Omit<IElement, 'children'> {
 	children?: React.FunctionComponentElement<IOption>[];
-	onChange?: (value: string) => void;
+	onChangeSelect?: (value: string) => void;
 };
 
-const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChange, value, ...props}, ref) => {
+const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect, value, ...props}, ref) => {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const emptyValue = useRef(false);
 
 	const [isOpen, setOpen] = useState(false);
@@ -41,13 +44,43 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChange, value
 		setOpen(false);
 	};
 
+	const handleClick = () => {
+		isOpen ? close() : open();
+	};
+
+	const triggerNativeEvent = (value: string) => {
+		const nativeInputValueSetter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value")?.set;
+		nativeInputValueSetter?.call(inputRef.current, value);
+
+		const event = new Event('input', { bubbles: true});
+		inputRef.current!.dispatchEvent(event);
+	};
+
 	const setSelect = (value: string) => {
-		if (typeof onChange === 'function') {
-			onChange(value);
+		if (typeof onChangeSelect === 'function') {
+			onChangeSelect(value);
 		}
+		
 		setSelected(value);
 		close();
 	};
+
+	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+		if (props.disabled) return;
+		if (typeof props.onInput === 'function') {
+			props.onInput(e);
+		}
+
+		if (typeof props.onChange === 'function') {
+			props.onChange(e);
+		}
+		setSelected(e.target.value);
+	};
+
+	useEffect(() => {
+		if (!selected) return;
+		triggerNativeEvent(selected);
+	}, [selected]);
 
 	useEffect(() => {
 		if (typeof value === 'undefined') return;
@@ -74,6 +107,8 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChange, value
 		}
 	}, [isOpen]);
 
+	useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
+
 	const classes = [''];
 	classes.push(styles['container'], styles['hidden']);
 	
@@ -85,9 +120,9 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChange, value
 			setSelected,
 			setTitle
 		}}>
-			<input {...props} type="hidden" value={selected} ref={ref}/>
+			<input {...props} type="hidden" value={selected} onInput={handleInput} ref={inputRef}/>
 			<div className={classes.join(' ')} ref={containerRef} tabIndex={1} onBlur={close}>
-				<div className={styles['select']} onClick={open}>
+				<div className={styles['select']} onClick={handleClick}>
 					<span className={styles['title']}>{title}</span>
 				</div>
 				<ul className={styles['select-list']}>
