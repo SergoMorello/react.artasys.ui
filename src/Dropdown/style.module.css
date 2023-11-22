@@ -1,0 +1,11 @@
+/* Dropdown */
+
+.container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.arrow {
+	padding: 5px;
+}

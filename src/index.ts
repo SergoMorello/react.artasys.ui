@@ -24,6 +24,7 @@ import Select,{
 	SelectOption,
 	SelectOptgroup
 } from "./Select";
+import Dropdown from "./Dropdown";
 
 const UI = {
 	
@@ -44,7 +45,8 @@ export {
 	Progress,
 	Select,
 	SelectOption,
-	SelectOptgroup
+	SelectOptgroup,
+	Dropdown
 };
 export type {
 	TFileData,

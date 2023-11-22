@@ -1,0 +1,16 @@
+/* Arrow Component */
+
+.container {
+
+}
+
+.container::after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 10px solid #5EBED6;
+	transition: rotate 0.3s;
+}
