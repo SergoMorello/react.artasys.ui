@@ -1,7 +1,8 @@
 import { AllHTMLAttributes, FunctionComponentElement } from "react";
-import type { IItem } from "./Item";
+import type { IItem, TChildrenAction } from "./Item";
+export declare const Context: import("react").Context<TChildrenAction>;
 export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
-    direction?: 'down' | 'up' | 'left' | 'right';
+    direction?: 'down' | 'up';
     position?: 'left' | 'right';
     split?: boolean;
     items: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];

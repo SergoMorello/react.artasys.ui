@@ -1,14 +1,35 @@
-import { AllHTMLAttributes, ReactElement } from "react";
+import {
+	useContext,
+	AllHTMLAttributes,
+	ReactElement,
+	MouseEvent
+} from "react";
 import styles from "./style.module.css";
+import { Context } from "./Dropdown";
 
-export interface IItem extends AllHTMLAttributes<HTMLLIElement> {
-	children: string | ReactElement;
+export type TChildrenAction = {
+	close: () => void;
 };
 
-const Item = ({children, ...props}: IItem) => {
+export interface IItem extends Omit<AllHTMLAttributes<HTMLLIElement>, 'children'> {
+	children: ((action: TChildrenAction) => ReactElement) | string | ReactElement;
+	autoClose?: boolean;
+};
 
-	return(<li {...props} className={styles['item']}>
-		{children}
+const Item = ({children, onClick, autoClose = true, ...props}: IItem) => {
+	const context = useContext(Context);
+
+	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
+		if (typeof onClick === 'function') {
+			onClick(e);
+		}
+		if (autoClose) {
+			context.close();
+		}
+	};
+
+	return(<li {...props} onClick={handleClick} className={styles['item']}>
+		{typeof children === 'function' ? children(context) : children}
 	</li>);
 };
 

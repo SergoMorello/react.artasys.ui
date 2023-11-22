@@ -13,6 +13,7 @@ import Element,{
 } from "../Form/Element";
 import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
+import Arrow from "../Components/Arrow";
 import styles from "./style.module.css";
 
 export const Context = createContext({
@@ -128,6 +129,7 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 			<div className={classes.join(' ')} ref={containerRef} tabIndex={1} onBlur={close}>
 				<div className={styles['select']} onClick={handleClick}>
 					<span className={styles['title']}>{title}</span>
+					<Arrow className={styles['arrow']}/>
 				</div>
 				<ul className={styles['select-list']}>
 					{children}
