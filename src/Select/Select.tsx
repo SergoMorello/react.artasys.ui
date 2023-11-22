@@ -5,11 +5,13 @@ import {
 	useEffect,
 	useRef,
 	ChangeEvent,
-	useImperativeHandle
+	useImperativeHandle,
+	FunctionComponentElement
 } from "react";
 import Element,{
 	IElement
 } from "../Form/Element";
+import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
 import styles from "./style.module.css";
 
@@ -18,11 +20,13 @@ export const Context = createContext({
 	emptyValue: {current:{}} as React.MutableRefObject<boolean>,
 	setSelect: (value: string) => {},
 	setSelected: (value: string) => {},
-	setTitle: (title: string) => {},
+	setTitle: (title: IOption['children']) => {},
 });
 
+export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[];
+
 export interface ISelect extends Omit<IElement, 'children'> {
-	children?: React.FunctionComponentElement<IOption>[];
+	children?: TOptionElement | FunctionComponentElement<IOptgroup> | FunctionComponentElement<IOptgroup>[];
 	onChangeSelect?: (value: string) => void;
 };
 
@@ -33,7 +37,7 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 
 	const [isOpen, setOpen] = useState(false);
 	const [selected, setSelected] = useState('');
-	const [title, setTitle] = useState<string>();
+	const [title, setTitle] = useState<IOption['children']>();
 
 	const open = () => {
 		if (props.disabled) return;

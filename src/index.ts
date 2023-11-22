@@ -21,7 +21,8 @@ import UploadImages,{
 import Checkbox from "./Checkbox";
 import Progress from "./Progress";
 import Select,{
-	SelectOption
+	SelectOption,
+	SelectOptgroup
 } from "./Select";
 
 const UI = {
@@ -42,7 +43,8 @@ export {
 	Checkbox,
 	Progress,
 	Select,
-	SelectOption
+	SelectOption,
+	SelectOptgroup
 };
 export type {
 	TFileData,
