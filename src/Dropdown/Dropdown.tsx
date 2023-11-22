@@ -21,10 +21,12 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 	direction?: 'down' | 'up';
 	position?: 'left' | 'right';
 	split?: boolean;
-	items: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
+	hover?: boolean;
+	items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
+	disabled?: boolean;
 };
 
-const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, ...props}: IDropdown) => {
+const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isOpen, setOpen] = useState(false);
 
@@ -33,7 +35,10 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	};
 
 	const toggle = () => {
-		setOpen((isOpen) => !isOpen);
+		setOpen((isOpen) => {
+			if (disabled) return false;
+			return !isOpen;
+		});
 	};
 
 	const handleClickArrow = () => {
@@ -41,7 +46,21 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	};
 
 	const handleClick = () => {
-		if (split) return;
+		if (!split) {
+			toggle();
+		}
+		if (hover) {
+			close();
+		}
+	};
+
+	const handleBlur = (e: React.FocusEvent) => {
+		if (e.currentTarget.contains(e.relatedTarget)) return;
+		close();
+	};
+
+	const handleMouseEnter = () => {
+		if (!hover || isOpen) return;
 		toggle();
 	};
 
@@ -60,18 +79,19 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	classes.push(styles['container']);
 	if (className) classes.push(className);
 	if (direction) classes.push(styles[direction]);
+	if (position) classes.push(styles[position]);
 
 	return(<Context.Provider value={{
 		close
 	}}>
-		<div {...props} className={classes.join(' ')} ref={containerRef} tabIndex={1} onBlur={close}>
-			{position === 'left' && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
+		<div {...props} className={classes.join(' ')} ref={containerRef} onMouseEnter={handleMouseEnter} tabIndex={1} onBlur={handleBlur}>
+			{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			<div onClick={handleClick}>
 				{children}
 			</div>
-			{position === 'right' && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
+			{(position === 'right' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			{
-				items && <ul className={styles['dropdown-list']}>
+				(items && !disabled) && <ul className={styles['dropdown-list']}>
 					{items}
 				</ul>
 			}

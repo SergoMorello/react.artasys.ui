@@ -12,11 +12,12 @@ export type TChildrenAction = {
 };
 
 export interface IItem extends Omit<AllHTMLAttributes<HTMLLIElement>, 'children'> {
-	children: ((action: TChildrenAction) => ReactElement) | string | ReactElement;
+	children?: ((action: TChildrenAction) => ReactElement) | string | ReactElement;
 	autoClose?: boolean;
+	active?: boolean;
 };
 
-const Item = ({children, onClick, autoClose = true, ...props}: IItem) => {
+const Item = ({children, onClick, autoClose = true, active, className, ...props}: IItem) => {
 	const context = useContext(Context);
 
 	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
@@ -28,7 +29,12 @@ const Item = ({children, onClick, autoClose = true, ...props}: IItem) => {
 		}
 	};
 
-	return(<li {...props} onClick={handleClick} className={styles['item']}>
+	const classes = ['ui-dropdown-item'];
+	classes.push(styles['item']);
+	if (active) classes.push(styles['active'], 'active');
+	if (className) classes.push(className);
+
+	return(<li {...props} onClick={handleClick} className={classes.join(' ')}>
 		{typeof children === 'function' ? children(context) : children}
 	</li>);
 };
