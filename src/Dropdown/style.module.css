@@ -1,11 +1,32 @@
 /* Dropdown */
 
 .container {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	cursor: pointer;
 }
 
 .arrow {
 	padding: 5px;
+}
+
+.dropdown-list {
+	position: absolute;
+	top: 100%;
+	padding: 0;
+	margin: 0;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 1;
+}
+
+.dropdown-list > li.item {
+
+}
+
+.container.opened > .dropdown-list {
+	opacity: 1;
+	visibility: visible;
 }
