@@ -28,6 +28,7 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 
 const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const hoverTimeout = useRef<ReturnType<typeof setTimeout>>();
 	const [isOpen, setOpen] = useState(false);
 
 	const close = () => {
@@ -61,7 +62,13 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 
 	const handleMouseEnter = () => {
 		if (!hover || isOpen) return;
-		toggle();
+		hoverTimeout.current = setTimeout(toggle, 50);
+	};
+
+	const handleMouseOut = () => {
+		if (hoverTimeout.current) {
+			clearTimeout(hoverTimeout.current);
+		}
 	};
 
 	useEffect(() => {
@@ -84,7 +91,7 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	return(<Context.Provider value={{
 		close
 	}}>
-		<div {...props} className={classes.join(' ')} ref={containerRef} onMouseEnter={handleMouseEnter} tabIndex={1} onBlur={handleBlur}>
+		<div {...props} className={classes.join(' ')} ref={containerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut} tabIndex={1} onBlur={handleBlur}>
 			{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			<div onClick={handleClick}>
 				{children}
