@@ -4,5 +4,5 @@ export interface IOption extends LiHTMLAttributes<HTMLLIElement> {
     disabled?: boolean;
     children?: string | React.ReactElement;
 }
-declare const Option: ({ children, value, disabled, onClick, ...props }: IOption) => JSX.Element;
+declare const Option: ({ children, value, disabled, hidden, onClick, ...props }: IOption) => JSX.Element | null;
 export default Option;

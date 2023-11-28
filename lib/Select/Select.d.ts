@@ -1,4 +1,4 @@
-import { FunctionComponentElement } from "react";
+import { FunctionComponentElement, ReactNode } from "react";
 import { IElement } from "../Form/Element";
 import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
@@ -9,7 +9,7 @@ export declare const Context: import("react").Context<{
     setSelected: (value: string) => void;
     setTitle: (title: IOption['children']) => void;
 }>;
-export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[];
+export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[] | ReactNode;
 export interface ISelect extends Omit<IElement, 'children'> {
     children?: TOptionElement | FunctionComponentElement<IOptgroup> | FunctionComponentElement<IOptgroup>[];
     onChangeSelect?: (value: string) => void;

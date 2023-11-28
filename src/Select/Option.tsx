@@ -13,7 +13,7 @@ export interface IOption extends LiHTMLAttributes<HTMLLIElement> {
 	children?: string | React.ReactElement;
 };
 
-const Option = ({children, value, disabled, onClick, ...props}: IOption) => {
+const Option = ({children, value, disabled, hidden, onClick, ...props}: IOption) => {
 	const context = useContext(Context);
 
 	const handleClick = (e: MouseEvent<HTMLLIElement>) => {
@@ -33,12 +33,14 @@ const Option = ({children, value, disabled, onClick, ...props}: IOption) => {
 			context.emptyValue.current = true;
 		}
 	}, [context.selected]);
+	
+	if (hidden) return(null);
 
 	const classes = ['ui-select-option'];
 	classes.push(styles['option']);
 	if (context.selected === value) classes.push(styles['active'], 'active');
 	if (disabled) classes.push(styles['disabled'], 'disabled');
-
+	
 	return(<li {...props} onClick={handleClick} className={classes.join(' ')}>{children}</li>);
 };
 

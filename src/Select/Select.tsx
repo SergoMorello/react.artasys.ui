@@ -6,7 +6,8 @@ import {
 	useRef,
 	ChangeEvent,
 	useImperativeHandle,
-	FunctionComponentElement
+	FunctionComponentElement,
+	ReactNode
 } from "react";
 import Element,{
 	IElement
@@ -24,7 +25,7 @@ export const Context = createContext({
 	setTitle: (title: IOption['children']) => {},
 });
 
-export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[];
+export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[] | ReactNode;
 
 export interface ISelect extends Omit<IElement, 'children'> {
 	children?: TOptionElement | FunctionComponentElement<IOptgroup> | FunctionComponentElement<IOptgroup>[];
@@ -61,12 +62,13 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 		inputRef.current!.dispatchEvent(event);
 	};
 
-	const setSelect = (value: string) => {
+	const setSelect = (val: string) => {
 		if (typeof onChangeSelect === 'function') {
-			onChangeSelect(value);
+			onChangeSelect(val);
 		}
-		
-		setSelected(value);
+		if (typeof value === 'undefined') {
+			setSelected(val);
+		}
 		close();
 	};
 
