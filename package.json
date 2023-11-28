@@ -1,6 +1,6 @@
 {
   "name": "react-artasys-ui",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "",
   "main": "dist/index.js",
   "types": "lib/index.d.ts",
@@ -46,7 +46,7 @@
     "react-hook-form": "^7.47.0"
   },
   "peerDependencies": {
-	"react": "^18.2.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
 }
