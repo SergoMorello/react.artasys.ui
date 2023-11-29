@@ -1,5 +1,5 @@
 import { useState, FunctionComponent } from "react";
-import type { TError } from "./types";
+import type { TError, TUseFormRegisterReturn } from "./types";
 import styles from "./style.module.css";
 
 import {
@@ -8,7 +8,8 @@ import {
 	RegisterOptions,
 	UseFormRegisterReturn,
 	FieldValues,
-	UseFormRegister,
+	SetValueConfig,
+	FieldPathValue,
 	FieldPath
 } from "react-hook-form";
 
@@ -24,7 +25,7 @@ const useForm = <TFieldValues extends FieldValues = FieldValues>(): TuseErrors<T
 		reValidateMode: 'onChange'
 	});
 
-	const register = <TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(name: TFieldName, options?: RegisterOptions<TFieldValues, TFieldName>): UseFormRegisterReturn<TFieldName> => {
+	const register = <TFieldName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(name: TFieldName, options?: RegisterOptions<TFieldValues, TFieldName>): TUseFormRegisterReturn<TFieldValues, TFieldName> => {
 		const inputRegister = form.register<TFieldName>(name, options);
 		const onChange = (e: {
 			target: any;
@@ -34,8 +35,15 @@ const useForm = <TFieldValues extends FieldValues = FieldValues>(): TuseErrors<T
 			form.clearErrors(name);
 			return inputRegister.onChange(e);
 		};
+		const formValue = form.watch(name);
 		const errors = form?.formState.errors;
-		return {...inputRegister, onChange, error: errors?.[name]?.message?.toString()} as UseFormRegisterReturn<TFieldName>;
+
+		return {
+			...inputRegister,
+			onChange,
+			formValue,
+			error: errors?.[name]?.message?.toString()
+		};
 	};
 
 	const setErrors = (e: TError<TFieldValues>) => {

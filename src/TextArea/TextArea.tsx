@@ -14,7 +14,7 @@ interface ITextArea extends IElement<HTMLTextAreaElement> {
 	onChangeText?: (text: string) => void;
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, ...props}, ref) => {
+const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, formValue, ...props}, ref) => {
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const [currentValue, setCurrentValue] = useState(props.value);
 
@@ -44,8 +44,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput,
 	},[currentValue]);
 
 	useEffect(() => {
-		setCurrentValue(props.value);
-	}, [props.value]);
+		setCurrentValue(props.value ?? formValue);
+	}, [props.value, formValue]);
 
 	useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
 

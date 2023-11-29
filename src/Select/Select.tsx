@@ -32,7 +32,7 @@ export interface ISelect extends Omit<IElement, 'children'> {
 	onChangeSelect?: (value: string) => void;
 };
 
-const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect, value, ...props}, ref) => {
+const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect, value, formValue, ...props}, ref) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const emptyValue = useRef(false);
@@ -88,11 +88,10 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 		if (!selected) return;
 		triggerNativeEvent(selected);
 	}, [selected]);
-
+	
 	useEffect(() => {
-		if (typeof value === 'undefined') return;
-		setSelected(String(value));
-	}, [value]);
+		setSelected(String(value ?? formValue));
+	}, [value, formValue]);
 
 	useEffect(() => {
 		const element = containerRef.current;

@@ -13,7 +13,7 @@ interface IInput extends IElement<HTMLInputElement> {
 	onChangeText?: (text: string) => void;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, ...props}, ref) => {
 	const [currentValue, setCurrentValue] = useState<string | undefined>('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +35,8 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	};
 
 	useEffect(() => {
-		if (typeof props.value === 'undefined') return;
-		setCurrentValue(String(props.value));
-	}, [props.value]);
+		setCurrentValue(String(props.value ?? formValue));
+	}, [props.value, formValue]);
 
 	return(<Element {...props}>
 		{ (props) => <input {...props} placeholder="" onChange={handleChange} value={currentValue} onInput={handleInput} ref={ref}/> }
