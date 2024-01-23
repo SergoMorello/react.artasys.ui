@@ -52,6 +52,7 @@ const File = ({onChange, children, multiple, accept, ...props}: TFile) => {
 	};
 
 	const handleDialog = (e: MouseEvent<HTMLDivElement>) => {
+		if (props.disabled) return;
 		selector.current!.click();
 		e.preventDefault();
 	};

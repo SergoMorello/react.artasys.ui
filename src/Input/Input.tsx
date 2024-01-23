@@ -2,7 +2,8 @@ import {
 	forwardRef,
 	useState,
 	ChangeEvent,
-	useEffect
+	useEffect,
+	type HTMLInputTypeAttribute
 } from "react";
 import Element,{
 	IElement
@@ -11,6 +12,7 @@ import Element,{
 
 interface IInput extends IElement<HTMLInputElement> {
 	onChangeText?: (text: string) => void;
+	type?: HTMLInputTypeAttribute;
 }
 
 const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, ...props}, ref) => {

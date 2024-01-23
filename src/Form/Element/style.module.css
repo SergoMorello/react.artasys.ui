@@ -83,6 +83,20 @@
 	content: "*";
 }
 
+/* Date */
+.element > input[type="date"]::-webkit-calendar-picker-indicator {
+	cursor: pointer;
+	border-radius: 4px;
+	margin-right: 2px;
+	opacity: 0.7;
+	filter: invert(0.8);
+}
+
+.element > input[type="date"]::-webkit-calendar-picker-indicator:hover {
+	opacity: 1
+}
+
+.element > input[type="date"] ~ .placeholder,
 .element > input:focus ~ .placeholder,
 .element > textarea:focus ~ .placeholder,
 .element > input:not([value=""]) ~ .placeholder,
