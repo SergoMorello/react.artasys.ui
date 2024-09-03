@@ -51,6 +51,9 @@
 	font-size: 18px;
 	font-weight: normal;
 	color: #1D1D1B;
+	white-space: nowrap;
+    width: 100%;
+	box-sizing: border-box;
 }
 
 .container.opened > .dropdown-list {
