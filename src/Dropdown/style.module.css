@@ -9,6 +9,23 @@
 	cursor: pointer;
 }
 
+.container > :global(.ui-dropdown-block) {
+	position: relative;
+}
+
+.container > :global(.ui-dropdown-block)::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.container > :global(.ui-dropdown-block).hide::after {
+	display: none;
+}
+
 .arrow {
 	padding: 5px;
 }

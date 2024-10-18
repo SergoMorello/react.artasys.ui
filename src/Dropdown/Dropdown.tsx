@@ -4,7 +4,9 @@ import {
 	useState,
 	FunctionComponentElement,
 	useEffect,
-	createContext
+	createContext,
+	Children,
+	type FocusEvent
 } from "react";
 import styles from "./style.module.css";
 import Arrow from "../Components/Arrow";
@@ -12,6 +14,7 @@ import type {
 	IItem,
 	TChildrenAction
 } from "./Item";
+import Items from "./Items";
 
 export const Context = createContext<TChildrenAction>({
 	close: () => {}
@@ -47,15 +50,11 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	};
 
 	const handleClick = () => {
-		if (!split) {
-			toggle();
-		}
-		if (hover) {
-			close();
-		}
+		if (hoverTimeout.current) return;
+		if (!split || hover) toggle();
 	};
 
-	const handleBlur = (e: React.FocusEvent) => {
+	const handleBlur = (e: FocusEvent) => {
 		if (e.currentTarget.contains(e.relatedTarget)) return;
 		close();
 	};
@@ -93,15 +92,11 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 	}}>
 		<div {...props} className={classes.join(' ')} ref={containerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut} tabIndex={1} onBlur={handleBlur}>
 			{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
-			<div onClick={handleClick}>
+			<div onClick={handleClick} className={'ui-dropdown-block' + (isOpen ? ' ' + styles['hide'] : '')}>
 				{children}
 			</div>
 			{(position === 'right' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
-			{
-				(items && !disabled) && <ul className={styles['dropdown-list']}>
-					{items}
-				</ul>
-			}
+			<Items isOpen={isOpen} disabled={disabled} items={items}/>
 		</div>
 	</Context.Provider>);
 };
