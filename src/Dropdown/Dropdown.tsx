@@ -27,9 +27,11 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 	hover?: boolean;
 	items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
 	disabled?: boolean;
+	onShow?: () => void;
+	onHide?: () => void;
 };
 
-const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, ...props}: IDropdown) => {
+const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, onShow, onHide, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const hoverTimeout = useRef<ReturnType<typeof setTimeout>>();
 	const [isOpen, setOpen] = useState(false);
@@ -76,8 +78,14 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 		if (isOpen) {
 			classList?.add(styles['opened']);
 			element?.focus();
+			if (typeof onShow === 'function') {
+				onShow();
+			}
 		}else{
 			classList?.remove(styles['opened']);
+			if (typeof onHide === 'function') {
+				onHide();
+			}
 		}
 	}, [isOpen]);
 
