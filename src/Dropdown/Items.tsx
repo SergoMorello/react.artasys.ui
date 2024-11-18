@@ -1,27 +1,27 @@
 import styles from "./style.module.css";
 import type { IDropdown } from "./Dropdown";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-interface IItems extends Pick<IDropdown, 'items' | 'disabled'> {
+interface IItems extends Pick<IDropdown, 'items' | 'disabled' | 'enableRerenderItems'> {
 	isOpen: boolean;
 };
 
-const Items = ({items, isOpen, disabled}: IItems) => {
+const Items = ({items, isOpen, enableRerenderItems, disabled}: IItems) => {
 	const listRef = useRef<HTMLUListElement>(null);
-	const [hide, setHide] = useState(false);
+
+	const renderItems = useMemo(() => {
+		if (enableRerenderItems) {
+			return isOpen ? items : null;
+		}
+		return items;
+	}, [enableRerenderItems, items, isOpen]);
 
 	useEffect(() => {
+
 		if (!listRef.current) return;
 		const screenWidth = window.innerWidth;
 		const element = listRef.current.getBoundingClientRect();
-		if (!isOpen) {
-			listRef.current.ontransitionend = () => {
-				setHide(true);
-			};
-		}else{
-			listRef.current.ontransitionend = null;
-			setHide(false);
-		}
+		
 		
 		// console.log(element.left)
 		if (element.left <= 0) {
@@ -30,9 +30,9 @@ const Items = ({items, isOpen, disabled}: IItems) => {
 		}
 	},[isOpen]);
 
-	if (disabled || hide) return null;
+	if (disabled) return null;
 
-	return(<ul className={styles['dropdown-list']} children={items} ref={listRef}/>);
+	return(<ul className={styles['dropdown-list']} children={renderItems} ref={listRef}/>);
 };
 
 export default Items;

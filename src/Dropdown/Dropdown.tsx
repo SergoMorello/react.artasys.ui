@@ -27,11 +27,12 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 	hover?: boolean;
 	items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
 	disabled?: boolean;
+	enableRerenderItems?: boolean;
 	onShow?: () => void;
 	onHide?: () => void;
 };
 
-const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, onShow, onHide, ...props}: IDropdown) => {
+const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, enableRerenderItems = true, onShow, onHide, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const hoverTimeout = useRef<ReturnType<typeof setTimeout>>();
 	const [isOpen, setOpen] = useState(false);
@@ -104,7 +105,7 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 				{children}
 			</div>
 			{(position === 'right' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
-			<Items isOpen={isOpen} disabled={disabled} items={items}/>
+			<Items isOpen={isOpen} disabled={disabled} enableRerenderItems={enableRerenderItems} items={items}/>
 		</div>
 	</Context.Provider>);
 };

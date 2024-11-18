@@ -8,8 +8,9 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
     hover?: boolean;
     items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
     disabled?: boolean;
+    enableRerenderItems?: boolean;
     onShow?: () => void;
     onHide?: () => void;
 }
-declare const Dropdown: ({ children, className, items, direction, position, split, disabled, hover, onShow, onHide, ...props }: IDropdown) => JSX.Element;
+declare const Dropdown: ({ children, className, items, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => JSX.Element;
 export default Dropdown;
