@@ -14,7 +14,7 @@ const Items = ({items, isOpen, disabled}: IItems) => {
 		if (!listRef.current) return;
 		const screenWidth = window.innerWidth;
 		const element = listRef.current.getBoundingClientRect();
-		if (isOpen) {
+		if (!isOpen) {
 			listRef.current.ontransitionend = () => {
 				setHide(true);
 			};
