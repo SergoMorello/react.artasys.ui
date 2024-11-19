@@ -25,6 +25,7 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 	position?: 'left' | 'right';
 	split?: boolean;
 	hover?: boolean;
+	arrow?: boolean;
 	items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
 	disabled?: boolean;
 	enableRerenderItems?: boolean;
@@ -32,7 +33,7 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
 	onHide?: () => void;
 };
 
-const Dropdown = ({children, className, items, direction = 'down', position = 'right', split = false, disabled, hover = false, enableRerenderItems = true, onShow, onHide, ...props}: IDropdown) => {
+const Dropdown = ({children, className, items, arrow = true, direction = 'down', position = 'right', split = false, disabled, hover = false, enableRerenderItems = true, onShow, onHide, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const hoverTimeout = useRef<ReturnType<typeof setTimeout>>();
 	const [isOpen, setOpen] = useState(false);
@@ -104,7 +105,7 @@ const Dropdown = ({children, className, items, direction = 'down', position = 'r
 			<div onClick={handleClick} className={'ui-dropdown-block' + (isOpen ? ' ' + styles['hide'] : '')}>
 				{children}
 			</div>
-			{(position === 'right' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
+			{(position === 'right' && !disabled && arrow) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			<Items isOpen={isOpen} disabled={disabled} enableRerenderItems={enableRerenderItems} items={items}/>
 		</div>
 	</Context.Provider>);
