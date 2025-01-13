@@ -5,8 +5,9 @@ import Spinner,{
 	type SpinnerProps
 } from '../Spinner';
 import Progress from '../Progress';
+import { UIComponent } from '../ui-types';
 
-interface IForm extends FormHTMLAttributes<HTMLFormElement> {
+export interface IForm extends UIComponent<FormHTMLAttributes<HTMLFormElement>> {
 	children: ReactNode;
 	wait?: boolean;
 	progress?: number;

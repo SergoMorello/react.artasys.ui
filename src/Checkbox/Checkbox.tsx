@@ -3,8 +3,9 @@ import Element,{
 	IElement
 } from "../Form/Element";
 import styles from "./style.module.css";
+import { UIComponent } from "../ui-types";
 
-interface ICheckbox extends IElement<HTMLInputElement> {
+export interface ICheckbox extends UIComponent<IElement<HTMLInputElement>> {
 	type?: 'checkbox' | 'radio';
 }
 

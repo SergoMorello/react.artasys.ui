@@ -2,7 +2,7 @@
 
 .container {
 	--ui-arrow-size: 10px;
-	--ui-arrow-color: #5EBED6;
+	--ui-arrow-color: var(--brand-background-primary);
 	--ui-arrow-max: var(--ui-arrow-size) solid var(--ui-arrow-color);
 	--ui-arrow-min: calc(var(--ui-arrow-size) / 2) solid transparent;
 }

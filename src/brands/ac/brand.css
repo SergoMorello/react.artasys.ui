@@ -1,0 +1,22 @@
+body.brand-ac {
+    --brand-accent-primary: #F9AC38;
+    --brand-300-primary: #FFBE5B;
+    --brand-background-primary: #131211;
+    --brand-accent-secondary: #005CA9;
+    --brand-800t-secondary: #001E49;
+
+    --neutral-white: #FFFFFF;
+    --neutral-100: #F6F6F6;
+    --neutral-150: #FBF3E6;
+    --neutral-200: #EEECEA;
+    --neutral-300: #CECBC6;
+    --neutral-400: #909498;
+    --neutral-500: #56595D;
+    --neutral-900-text: #1E1E1E;
+
+    --error-primary: #FF4231;
+    --error-secondary: #FFEEED;
+
+    --success-primary: #2BC3A0;
+    --success-secondary: #F0FFF1;
+}

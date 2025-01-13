@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, HTMLAttributes } from "react";
+import { useEffect, type ButtonHTMLAttributes, type HTMLAttributes } from "react";
 import styles from "./style.module.scss";
 import Spinner,{
 	type SpinnerProps
@@ -13,6 +13,7 @@ export interface ButtonProps extends UIComponent<ButtonHTMLAttributes<HTMLButton
 }
 
 const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, ...props}: ButtonProps) => {
+
 
 	const classes = ['ui-button-container'];
 

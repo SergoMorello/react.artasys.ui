@@ -28,6 +28,8 @@ import Dropdown,{
 	DropdownItem
 } from "./Dropdown";
 
+import './brands/brands.css'
+
 const UI = {
 	
 };

@@ -8,9 +8,10 @@ import {
 import Element,{
 	IElement
 } from "../Form/Element";
+import { UIComponent } from "../ui-types";
 
 
-interface IInput extends IElement<HTMLInputElement> {
+export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
 	onChangeText?: (text: string) => void;
 	type?: HTMLInputTypeAttribute;
 }

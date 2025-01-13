@@ -15,12 +15,13 @@ import type {
 	TChildrenAction
 } from "./Item";
 import Items from "./Items";
+import { UIComponent } from "../ui-types";
 
 export const Context = createContext<TChildrenAction>({
 	close: () => {}
 });
 
-export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
+export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>> {
 	direction?: 'down' | 'up';
 	position?: 'left' | 'right';
 	split?: boolean;

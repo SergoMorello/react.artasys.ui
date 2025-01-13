@@ -1,0 +1,20 @@
+body.brand-at {
+    --brand-accent-primary: #02505E;
+    --brand-300-primary: #11889D;
+    --brand-background-primary: #04141F;
+
+    --neutral-white: #FFFFFF;
+    --neutral-100: #F6F6F6;
+    --neutral-150: #F8FBFC;
+    --neutral-200: #EEECEA;
+    --neutral-300: #CECBC6;
+    --neutral-400: #909498;
+    --neutral-500: #56595D;
+    --neutral-900-text: #1E1E1E;
+
+    --error-primary: #FF4231;
+    --error-secondary: #FFEEED;
+
+    --success-primary: #2BC3A0;
+    --success-secondary: #F0FFF1;
+}

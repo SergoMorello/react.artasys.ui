@@ -2,8 +2,8 @@
 
 .container {
 	position: relative;
-	border: 1px solid #5EBED6;
-	background-color: #BED4DB;
+	border: 1px solid var(--brand-300-primary);
+	background-color: var(--brand-accent-primary);
 }
 
 .container button {
@@ -13,15 +13,16 @@
 	border: 0;
     padding: 5px 8px;
     font-size: 1.1em;
-	color: #1D1D1B;
+	color: var(--neutral-white);
+	background-color: var(--brand-accent-primary);
 	cursor: pointer;
 	border-radius: 0.1em;
 	transition: background-color 0.3s;
 }
 
 .container button:hover {
-	background-color: #ADCED8;
-	color: #1D1D1B;
+	background-color: var(--brand-background-primary);
+	color: var(--neutral-white);
 }
 
 .container > .wait-indicator {

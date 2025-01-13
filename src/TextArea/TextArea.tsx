@@ -9,8 +9,9 @@ import {
 import Element,{
 	IElement
 } from "../Form/Element";
+import { UIComponent } from "../ui-types";
 
-interface ITextArea extends IElement<HTMLTextAreaElement> {
+export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
 	onChangeText?: (text: string) => void;
 }
 

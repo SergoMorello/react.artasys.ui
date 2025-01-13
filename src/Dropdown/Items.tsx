@@ -2,7 +2,7 @@ import styles from "./style.module.css";
 import type { IDropdown } from "./Dropdown";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-interface IItems extends Pick<IDropdown, 'items' | 'disabled' | 'enableRerenderItems'> {
+export interface IItems extends Pick<IDropdown, 'items' | 'disabled' | 'enableRerenderItems'> {
 	isOpen: boolean;
 };
 

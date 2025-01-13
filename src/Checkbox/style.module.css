@@ -25,7 +25,7 @@
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid #5EBED6;
+	border: 1px solid var(--brand-300-primary);
 	background-color: #BED4DB;
 	width: 20px;
 	height: 20px;
@@ -46,7 +46,7 @@
 	top: 0;
 	width: 35%;
     height: 70%;
-    border: solid #1D1D1B;
+    border: solid var(--neutral-900-text);
     border-width: 0 2px 2px 0;
     transform: rotate( 45deg);
 	scale: 0;
@@ -61,7 +61,7 @@
 	transform: unset;
 	width: 70%;
 	height: 70%;
-	background-color: #1D1D1B;
+	background-color: var(--neutral-900-text);
 }
 
 .container > input:checked ~ .indicator {
