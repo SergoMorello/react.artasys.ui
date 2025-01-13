@@ -7,13 +7,19 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "copy-css": "copyfiles -u 1 src/**/*.module.css lib/"
+    "copy-css": "copyfiles -u 1 src/**/*.module.css lib/",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "jest": {
     "transform": {
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SergoMorello/react.artasys.ui.git"
@@ -27,18 +33,33 @@
   "homepage": "https://github.com/SergoMorello/react.artasys.ui#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
+    "@chromatic-com/storybook": "^3.2.3",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/addon-webpack5-compiler-swc": "^2.0.0",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/react": "^8.4.7",
+    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/test": "^8.4.7",
     "@types/jest": "^29.5.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.16",
     "babel-jest": "^29.5.0",
+    "babel-loader": "^9.2.1",
     "copyfiles": "^2.4.1",
     "css-loader": "^6.8.1",
     "jest": "^29.5.0",
     "postcss-loader": "^7.3.3",
+    "sass": "^1.83.1",
+    "sass-loader": "^16.0.4",
+    "storybook": "^8.4.7",
     "style-loader": "^3.3.3",
-    "ts-loader": "^9.5.0",
-    "typescript": "^5.2.2",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.7.3",
     "typescript-plugin-css-modules": "^5.0.1",
     "webpack-cli": "^5.1.4"
   },

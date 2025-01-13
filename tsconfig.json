@@ -113,6 +113,7 @@
   },
   "include": [
 	"src",
+	"stories",
 	"*.d.ts"
   ]
 }

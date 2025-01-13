@@ -1,8 +1,8 @@
 import Spinner,{
-	TSpinner
+	type SpinnerProps
 } from "./Spinner";
 
 export type {
-	TSpinner
+	SpinnerProps
 };
 export default Spinner;

@@ -16,25 +16,55 @@ module.exports = {
 		],
         exclude: /node_modules/,
       },
-	  { test: /\.css$/, use: [
-		'style-loader',
-		'css-loader',
-		{
-			loader: 'postcss-loader',
-			options: {
-				postcssOptions: {
-				  plugins: [
-					[
-					  "autoprefixer",
-					  {
-						// Options
-					  },
-					],
-				  ],
+	  {
+		test: /\.(s[ac]ss|css)$/i, // Обрабатывает .css, .scss и .sass файлы
+		oneOf: [
+		  // CSS/SCSS модули
+		  {
+			test: /\.module\.(s[ac]ss|css)$/i, // Только модули
+			use: [
+			  'style-loader',
+			  {
+				loader: 'css-loader',
+				options: {
+				  modules: { // Включение CSS-модулей
+					localIdentName: '[name]__[local]___[hash:base64:5]', // Уникальные имена классов
+				  },
 				},
-			}
-		}
-		] }
+			  },
+			  'sass-loader', // Для .scss и .sass файлов
+			  {
+				loader: 'postcss-loader', // PostCSS (например, autoprefixer)
+				options: {
+				  postcssOptions: {
+					plugins: [
+					  ['autoprefixer', {}],
+					],
+				  },
+				},
+			  },
+			],
+		  },
+		  // Обычные CSS/SCSS (не модули)
+		  {
+			use: [
+			  'style-loader',
+			  'css-loader', // Без модулей
+			  'sass-loader', // Для .scss и .sass файлов
+			  {
+				loader: 'postcss-loader', // PostCSS (например, autoprefixer)
+				options: {
+				  postcssOptions: {
+					plugins: [
+					  ['autoprefixer', {}],
+					],
+				  },
+				},
+			  },
+			],
+		  },
+		],
+	  },
     ],
   },
   resolve: {

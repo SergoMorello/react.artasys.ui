@@ -1,12 +1,13 @@
 import { AllHTMLAttributes } from "react";
 import styles from "./style.module.css";
+import type { UIComponent } from "../ui-types";
 
-export type TSpinner = Omit<AllHTMLAttributes<HTMLDivElement>, 'size' | 'color'> & {
+export interface SpinnerProps extends UIComponent<Omit<AllHTMLAttributes<HTMLDivElement>, 'size' | 'color'>> {
 	size?: 'small' | 'middle' | 'large';
 	color?: 'contrast' | 'orange';
-}
+};
 
-const Spinner = ({size, color, ...props}: TSpinner) => {
+const Spinner = ({size, color, ...props}: SpinnerProps) => {
 
 	const classes = ['ui-spinner'];
 

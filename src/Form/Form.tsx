@@ -2,7 +2,7 @@ import { FormHTMLAttributes, ReactNode, FormEvent } from 'react';
 import styles from './style.module.css';
 
 import Spinner,{
-	TSpinner
+	type SpinnerProps
 } from '../Spinner';
 import Progress from '../Progress';
 
@@ -11,7 +11,7 @@ interface IForm extends FormHTMLAttributes<HTMLFormElement> {
 	wait?: boolean;
 	progress?: number;
 	progressRadius?: boolean;
-	spinnerColor?: TSpinner['color'];
+	spinnerColor?: SpinnerProps['color'];
 }
 
 const Form = ({children, wait, progress, progressRadius = true, className, spinnerColor, onSubmit, ...props}: IForm) => {

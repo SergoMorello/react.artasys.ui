@@ -1,17 +1,18 @@
-import React from "react";
-import styles from "./style.module.css";
+import type { ButtonHTMLAttributes, HTMLAttributes } from "react";
+import styles from "./style.module.scss";
 import Spinner,{
-	TSpinner
+	type SpinnerProps
 } from "../Spinner";
+import type { UIComponent } from "../ui-types";
 
-interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends UIComponent<ButtonHTMLAttributes<HTMLButtonElement>> {
 	wait?: boolean;
 	classNameContainer?: string;
-	styleContainer?: React.HTMLAttributes<HTMLDivElement>['style'];
-	spinnerColor?: TSpinner['color'];
+	styleContainer?: HTMLAttributes<HTMLDivElement>['style'];
+	spinnerColor?: SpinnerProps['color'];
 }
 
-const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, ...props}: IButton) => {
+const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, ...props}: ButtonProps) => {
 
 	const classes = ['ui-button-container'];
 
