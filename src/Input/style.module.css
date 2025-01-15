@@ -3,14 +3,18 @@
     margin: 15px 0 15px 0;
     font-size: 18px;
     padding: 10px 0 10px 15px;
-    border: 2px solid #E2E8F2;
+    border: 2px solid var(--neutral-400);
     resize: none;
     outline: none;
     transition: 0.2s;
     -webkit-transition: 0.2s;
 }
 
+.container > input[type="text"]:hover {
+    border: 2px solid var(--brand-accent-primary);
+}
+
 .container > input[type="text"]:focus {
-	border: 2px solid #FBA31D;
+	border: 2px solid var(--brand-accent-primary);
 	border-bottom: 2px solid #000;
 }

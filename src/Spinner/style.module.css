@@ -1,7 +1,7 @@
 /* Spinner */
 
 .spinner {
-	--color-rgb: 94, 190, 214;
+	--color-rgb: var(--brand-accent-primary-rgb);
 	display: flex;
     justify-content: center;
     align-items: center;

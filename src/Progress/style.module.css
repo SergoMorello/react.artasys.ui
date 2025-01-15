@@ -25,7 +25,7 @@
 	height: 100%;
 	max-width: 100%;
     max-height: 100%;
-	background: linear-gradient(to right, #5EBED6 var(--progress), #BED4DB 0);
+	background: linear-gradient(to right, var(--brand-accent-primary) var(--progress), var(--neutral-150) 0);
 }
 
 .container.radius {
@@ -43,20 +43,20 @@
 		transparent calc(100% - var(--border-width) - 0.5px),
 		#000 calc(100% - var(--border-width) + 0.5px)
 	);
-	background: conic-gradient(#5EBED6 var(--progress), #BED4DB 0deg);
+	background: conic-gradient( var(--brand-accent-primary) var(--progress), var(--neutral-150) 0deg);
 }
 
 .container::after {
 	content: attr(data-progress) '%';
 	font-size: 1.5em;
-	color: #FFFFFF;
-	mix-blend-mode: lighten;
+	color: var(--neutral-900-text);
+	mix-blend-mode: darken;
 	z-index: 1;
 }
 
 .container.radius::after {
 	mix-blend-mode: unset;
-	color: #1D1D1B;
+	color: var(--neutral-900-text);
 }
 
 .container.small {
