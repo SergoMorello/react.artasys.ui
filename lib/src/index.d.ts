@@ -10,6 +10,7 @@ import Checkbox from "./Checkbox";
 import Progress from "./Progress";
 import Select, { SelectOption, SelectOptgroup } from "./Select";
 import Dropdown, { DropdownItem } from "./Dropdown";
+import './brands/brands.css';
 declare const UI: {};
 export { Form, FormElement, Element, useForm, Input, TextArea, Spinner, File, Button, UploadImages, Checkbox, Progress, Select, SelectOption, SelectOptgroup, Dropdown, DropdownItem };
 export type { TFileData, TFileMime, IUploadImages, IImage, TImageData, IElement };

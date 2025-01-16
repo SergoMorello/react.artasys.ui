@@ -10,18 +10,27 @@ export interface ButtonProps extends UIComponent<ButtonHTMLAttributes<HTMLButton
 	classNameContainer?: string;
 	styleContainer?: HTMLAttributes<HTMLDivElement>['style'];
 	spinnerColor?: SpinnerProps['color'];
+	variant?: 'light' | 'secondary' | 'secondary-light' | 'tertiary' | 'no';
+	size?: 'normal' | 'small' | 'large';
 }
 
-const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, ...props}: ButtonProps) => {
+const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, variant, size = 'normal', ...props}: ButtonProps) => {
+
+	const buttonClasses = `
+		${styles.btn}
+		${variant === 'light' ? styles['btn-light'] : ''}
+		${variant === 'secondary' ? styles['btn-secondary'] : ''}
+		${variant === 'secondary-light' ? styles['btn-secondary-light'] : ''}
+		${variant === 'tertiary' ? styles['btn-tertiary'] : ''}
+		${size === 'normal' ? styles['normal-btn'] : ''}
+		${size === 'small' ? styles['small-btn'] : ''}
+		${size === 'large' ? styles['large-btn'] : ''}
+		${className || ''}
+	`.trim();
 
 
-	const classes = ['ui-button-container'];
-
-	classes.push(styles['container']);
-	if (classNameContainer) classes.push(classNameContainer);
-
-	return(<div className={classes.join(' ')} style={styleContainer}>
-		<button {...props} className={'ui-button' + (className ? ' ' + className : '')}>{children}</button>
+	return(<div style={styleContainer}>
+		<button {...props} className={buttonClasses}>{children}</button>
 		<div className={'ui-button-spinner ' + styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
 			<Spinner size="small" color={spinnerColor}/>
 		</div>

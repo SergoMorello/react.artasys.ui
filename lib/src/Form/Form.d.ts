@@ -1,6 +1,7 @@
 import { FormHTMLAttributes, ReactNode } from 'react';
 import { type SpinnerProps } from '../Spinner';
-interface IForm extends FormHTMLAttributes<HTMLFormElement> {
+import { UIComponent } from '../ui-types';
+export interface IForm extends UIComponent<FormHTMLAttributes<HTMLFormElement>> {
     children: ReactNode;
     wait?: boolean;
     progress?: number;

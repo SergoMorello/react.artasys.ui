@@ -1,7 +1,8 @@
 import { AllHTMLAttributes, FunctionComponentElement } from "react";
 import type { IItem, TChildrenAction } from "./Item";
+import { UIComponent } from "../ui-types";
 export declare const Context: import("react").Context<TChildrenAction>;
-export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
+export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>> {
     direction?: 'down' | 'up';
     position?: 'left' | 'right';
     split?: boolean;

@@ -13,7 +13,8 @@ const Template: StoryFn<ButtonProps> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-	children: 'Button'
+	children: 'Button',
+  className: 'btn normal-btn'
 };
 
 export const Secondary = Template.bind({});

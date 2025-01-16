@@ -1,4 +1,4 @@
-interface IProgress {
+export interface IProgress {
     value?: number | string;
     size?: 'small' | 'middle' | 'large';
     radius?: boolean;
