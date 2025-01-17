@@ -3,7 +3,7 @@
     margin: 15px 0 15px 0;
     font-size: 18px;
     padding: 10px 0 10px 15px;
-    border: 2px solid var(--neutral-400);
+    border: 2px solid var(--brand-300-primary);
     resize: none;
     outline: none;
     transition: 0.2s;

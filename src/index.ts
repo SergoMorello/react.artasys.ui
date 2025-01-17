@@ -8,6 +8,7 @@ import Element,{
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Spinner from "./Spinner";
+import Loading from "./Loading";
 import File,{
 	TFileData,
 	TFileMime
@@ -42,6 +43,7 @@ export {
 	Input,
 	TextArea,
 	Spinner,
+	Loading,
 	File,
 	Button,
 	UploadImages,

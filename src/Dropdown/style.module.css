@@ -84,6 +84,6 @@
 }
 
 .dropdown-list > li.item:hover, .dropdown-list > li.item:has(:global(a.active)) {
-	background-color: var(--neutral-150);
+	background-color: var(--brand-300-primary);
 	border-radius: inherit;
 }

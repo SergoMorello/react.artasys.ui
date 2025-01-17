@@ -25,19 +25,21 @@
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid var(--brand-300-primary);
-	background-color: var(--neutral-150);
+	outline: 1px solid var(--brand-accent-primary);
+	outline-offset: -1px;
+	border-radius: 2px;
 	width: 20px;
 	height: 20px;
 	aspect-ratio: 1/1;
+	transition: .1s;
+}
+
+.indicator:hover {
+	box-shadow: inset 0 0 0 1px var(--brand-accent-primary);
 }
 
 .container > input[type="radio"] ~ .indicator {
 	border-radius: 50%;
-}
-
-.container:hover > .indicator {
-	background-color: #5EBED65F;
 }
 
 .indicator::before {
@@ -46,7 +48,7 @@
 	top: 0;
 	width: 35%;
     height: 70%;
-    border: solid var(--neutral-900-text);
+    border: solid var(--neutral-white);
     border-width: 0 2px 2px 0;
     transform: rotate( 45deg);
 	scale: 0;
@@ -61,11 +63,13 @@
 	transform: unset;
 	width: 70%;
 	height: 70%;
-	background-color: var(--neutral-900-text);
 }
 
-.container > input:checked ~ .indicator {
-	background-color: #5EBED65F;
+.container > input[type="radio"]:checked ~ .indicator {
+	box-shadow: inset 0 0 0 5px var(--brand-accent-primary);
+}
+.container > input[type="checkbox"]:checked ~ .indicator {
+	background-color: var(--brand-accent-primary);
 }
 
 .container > input:checked ~ .indicator::before {

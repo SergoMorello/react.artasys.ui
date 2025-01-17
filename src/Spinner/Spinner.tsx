@@ -4,7 +4,7 @@ import type { UIComponent } from "../ui-types";
 
 export interface SpinnerProps extends UIComponent<Omit<AllHTMLAttributes<HTMLDivElement>, 'size' | 'color'>> {
 	size?: 'small' | 'middle' | 'large';
-	color?: 'contrast' | 'orange';
+	color?: 'contrast' | 'orange' | 'none';
 };
 
 const Spinner = ({size, color, ...props}: SpinnerProps) => {

@@ -61,10 +61,12 @@
 
 .container.small {
 	--size: 30px;
+	font-size: .6em;
 }
 
 .container.middle {
 	--size: 60px;
+	font-size: 0.7em
 }
 
 .container.large {

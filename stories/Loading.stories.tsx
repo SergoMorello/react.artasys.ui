@@ -1,20 +1,18 @@
 import { Meta, StoryFn } from '@storybook/react';
-import Input, { IInput } from '../src/Input/Input';
+import Loading, { type LoadingProps } from '../src/Loading';
 
 export default {
-  title: 'UI/Input',
-  component: Input,
+  title: 'UI/Loading',
+  component: Loading,
   argTypes: {
     onClick: { action: 'clicked' },
-    placeholder: { control: 'text' },
   },
 } as Meta;
 
-const Template: StoryFn<IInput> = (args) => <Input {...args} />;
+const Template: StoryFn<LoadingProps> = (args) => <Loading {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  placeholder: 'Текст'
 };
 
 export const Secondary = Template.bind({});

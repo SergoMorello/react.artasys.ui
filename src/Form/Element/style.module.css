@@ -6,6 +6,7 @@
 	width: 100%;
 	position: relative;
     border-radius: 6px;
+	font-family: Helvetica;
 	z-index: 0;
 }
 
@@ -29,7 +30,7 @@
     font-size: 20px;
 	box-sizing: border-box;
 	background-color: transparent;
-	border: 2px solid var(--neutral-400);
+	border: 1px solid var(--brand-300-primary);
 	border-radius: 6px;
 	outline: none;
 	resize: none;
@@ -49,7 +50,7 @@
 
 .element > input:focus, .element > input:hover {
 	outline: none;
-	border: 2px solid var(--brand-accent-primary);
+	box-shadow: inset 0 0 0 1px var(--brand-300-primary);
 }
 
 .element > .placeholder {
@@ -58,10 +59,10 @@
 	justify-content: center;
 	align-items: center;
 	top: 0;
-	margin-left: 5px;
+	margin-left: 16px;
 	height: 100%;
 	color: var(--neutral-400);
-	font-size: 1.2rem;
+	font-size: 16px;
 	z-index: -1;
 	user-select: none;
 	transition: transform 0.3s;
