@@ -1,10 +1,12 @@
 import React from "react";
 import { TSpinner } from "../Spinner";
-interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    wait?: boolean;
-    classNameContainer?: string;
-    styleContainer?: React.HTMLAttributes<HTMLDivElement>['style'];
-    spinnerColor?: TSpinner['color'];
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+	wait?: boolean;
+	classNameContainer?: string;
+	styleContainer?: HTMLAttributes<HTMLDivElement>['style'];
+	variant?: 'primary' | 'light' | 'secondary' | 'secondary-light' | 'tertiary' ;
+	size?: 'normal' | 'small' | 'large';
+	icon?: 'left' | 'right' | 'only' | 'no';
 }
-declare const Button: ({ children, className, classNameContainer, styleContainer, spinnerColor, wait, ...props }: IButton) => JSX.Element;
+declare const Button: React.FC<ButtonProps> = ({ children, className, classNameContainer, styleContainer, spinnerColor, wait, ...props }) => JSX.Element;
 export default Button;

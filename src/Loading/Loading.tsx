@@ -1,8 +1,7 @@
 import { AllHTMLAttributes } from 'react';
-import { UIComponent } from '../ui-types';
 import styles from './style.module.scss';
 
-export interface LoadingProps extends UIComponent<Omit<AllHTMLAttributes<HTMLDivElement>, 'color'>> {
+export interface LoadingProps extends Omit<AllHTMLAttributes<HTMLDivElement>, 'color'> {
     color?:  'primary' | 'light' | 'secondary' | 'secondary-light' | 'tertiary' ;
 };
 

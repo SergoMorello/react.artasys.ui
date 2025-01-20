@@ -13,9 +13,10 @@ import { UIComponent } from "../ui-types";
 
 export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
 	onChangeText?: (text: string) => void;
+	wait?: boolean;
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, formValue, ...props}, ref) => {
+const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, formValue, wait, ...props}, ref) => {
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const [currentValue, setCurrentValue] = useState(props.value);
 
@@ -50,8 +51,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput,
 
 	useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
 
-	return(<Element {...props}>
-		{ (props) => <textarea {...props} placeholder="" value={currentValue} onChange={handleChange} onInput={handleInput} ref={textareaRef}/> }
+	return(<Element {...props} wait={wait}>
+		{ (props) => <textarea {...props} disabled={wait} placeholder="" value={wait ? '' : currentValue} onChange={handleChange} onInput={handleInput} ref={textareaRef}/> }
 	</Element>);
 });
 

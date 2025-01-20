@@ -14,9 +14,10 @@ import { UIComponent } from "../ui-types";
 export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
 	onChangeText?: (text: string) => void;
 	type?: HTMLInputTypeAttribute;
+	wait?: boolean;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, wait, ...props}, ref) => {
 	const [currentValue, setCurrentValue] = useState('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +43,8 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 		setCurrentValue(value ? String(value) : '');
 	}, [props.value, formValue]);
 
-	return(<Element {...props}>
-		{ (props) => <input {...props} placeholder="" onChange={handleChange} value={currentValue} onInput={handleInput} ref={ref}/> }
+	return(<Element {...props} wait={wait}>
+		{ (props) => <input {...props} placeholder="" onChange={handleChange} disabled={wait} value={wait ? '' : currentValue} onInput={handleInput} ref={ref}/> }
 	</Element>);
 });
 

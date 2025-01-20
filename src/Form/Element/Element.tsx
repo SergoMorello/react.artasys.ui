@@ -5,7 +5,8 @@ import {
 	ReactElement,
 	cloneElement
 } from "react";
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
+import Loading from "../../Loading";
 
 export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'> {
 	children?: ((props: AllHTMLAttributes<T>) => ReactElement) | AllHTMLAttributes<T>["children"];
@@ -18,9 +19,10 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
 	beforeElement?: React.ReactElement;
 	afterElement?: React.ReactElement;
 	hiddenContainer?: boolean;
+	wait?: boolean
 }
 
-const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, ...props}: IElement) => {
+const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, wait, ...props}: IElement) => {
 	const [currentError, setCurrentError] = useState('');
 
 	useEffect(() => {
@@ -43,9 +45,14 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, sty
 			{beforeElement ? cloneElement(beforeElement, {key: 'ui-before-element'}) : null}
 			<div className={'ui-form-element ' + styles['element']}>
 				{typeof children === 'function' ? children(props) : null}
-				{placeholder && <span className={'ui-form-element-placeholder ' + styles['placeholder']}>{placeholder}</span>}
+				{placeholder && wait ? '' :  <span className={'ui-form-element-placeholder ' + styles['placeholder']}>{placeholder}</span>}
 			</div>
 			{afterElement ? cloneElement(afterElement, {key: 'ui-after-element'}) : null}
+			{wait && (
+				<div className={`ui-loading-element ${styles['loading-container']}`}>
+					<Loading />
+				</div>
+			)}
 		</label>
 		{currentError && <div className={'ui-form-error ' + styles['error']}>{currentError}</div>}
 	</>);

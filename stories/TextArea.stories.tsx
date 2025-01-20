@@ -6,6 +6,7 @@ export default {
   component: TextArea,
   argTypes: {
     onClick: { action: 'clicked' },
+    placeholder: { control: 'text' },
   },
 } as Meta;
 
@@ -13,6 +14,7 @@ const Template: StoryFn<ITextArea> = (args) => <TextArea {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+  placeholder: 'Text'
 };
 
 export const Secondary = Template.bind({});

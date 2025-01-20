@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import Element,{
 	IElement
 } from "../Form/Element";
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
 import { UIComponent } from "../ui-types";
 
 export interface ICheckbox extends UIComponent<IElement<HTMLInputElement>> {

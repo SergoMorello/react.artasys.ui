@@ -9,10 +9,9 @@
 	cursor: pointer;
 	user-select: none;
 	gap: 10px;
-}
-
-.container > input {
-	display: none;
+		input {
+			display: none;
+		}
 }
 
 .text {
@@ -32,28 +31,26 @@
 	height: 20px;
 	aspect-ratio: 1/1;
 	transition: .1s;
-}
-
-.indicator:hover {
-	box-shadow: inset 0 0 0 1px var(--brand-accent-primary);
+		&:hover {
+			box-shadow: inset 0 0 0 1px var(--brand-accent-primary);
+		}
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			width: 35%;
+			height: 70%;
+			border: solid var(--neutral-white);
+			border-width: 0 2px 2px 0;
+			transform: rotate( 45deg);
+			scale: 0;
+			opacity: 0;
+			transition: scale 0.1s, opacity 0.1s;
+		}
 }
 
 .container > input[type="radio"] ~ .indicator {
 	border-radius: 50%;
-}
-
-.indicator::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	width: 35%;
-    height: 70%;
-    border: solid var(--neutral-white);
-    border-width: 0 2px 2px 0;
-    transform: rotate( 45deg);
-	scale: 0;
-	opacity: 0;
-	transition: scale 0.1s, opacity 0.1s;
 }
 
 .container > input[type="radio"] ~ .indicator::before {
@@ -68,6 +65,7 @@
 .container > input[type="radio"]:checked ~ .indicator {
 	box-shadow: inset 0 0 0 5px var(--brand-accent-primary);
 }
+
 .container > input[type="checkbox"]:checked ~ .indicator {
 	background-color: var(--brand-accent-primary);
 }

@@ -1,4 +1,4 @@
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
 import type { IDropdown } from "./Dropdown";
 import { useEffect, useMemo, useRef, useState } from "react";
 

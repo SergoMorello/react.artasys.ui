@@ -4,7 +4,7 @@ import {
 	ReactElement,
 	MouseEvent
 } from "react";
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
 import { Context } from "./Dropdown";
 
 export type TChildrenAction = {

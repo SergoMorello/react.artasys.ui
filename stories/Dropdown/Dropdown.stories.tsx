@@ -36,7 +36,7 @@ Secondary.args = {
     <DropdownItem key="4">Option 4</DropdownItem>,
     <DropdownItem key="5">Option 5</DropdownItem>,
   ],
-  direction: 'up',
+  direction: 'down',
   position: 'left',
   arrow: false,
   split: true,

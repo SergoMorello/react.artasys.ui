@@ -21,13 +21,21 @@
     }
 }
 .secondary {
-        .dot {
-            background-color: var(--brand-300-primary);
-        }
+    .dot {
+        background-color: var(--brand-300-primary);
+    }
 }
 .secondary-light {
     .dot {
         background-color: var(--neutral-150);
+    }
+}
+
+label {
+    .loading {
+        .dot {
+            background-color: var(--brand-accent-primary);
+        }
     }
 }
 

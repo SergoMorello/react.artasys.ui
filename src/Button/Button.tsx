@@ -6,17 +6,16 @@ import Spinner,{
 import type { UIComponent } from "../ui-types";
 import Loading from "../Loading";
 
-export interface ButtonProps extends UIComponent<ButtonHTMLAttributes<HTMLButtonElement>> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	wait?: boolean;
 	classNameContainer?: string;
 	styleContainer?: HTMLAttributes<HTMLDivElement>['style'];
-	spinnerColor?: SpinnerProps['color'];
 	variant?: 'primary' | 'light' | 'secondary' | 'secondary-light' | 'tertiary' ;
 	size?: 'normal' | 'small' | 'large';
 	icon?: 'left' | 'right' | 'only' | 'no';
 }
 
-const Button = ({children, className, classNameContainer, styleContainer, spinnerColor = 'contrast', wait = false, variant, size = 'normal', icon, ...props}: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({children, className, classNameContainer, styleContainer, wait = false, variant, size = 'normal', icon, ...props}) => {
 
 	const buttonClasses = `
 		${styles.btn}
@@ -27,9 +26,9 @@ const Button = ({children, className, classNameContainer, styleContainer, spinne
 		${size === 'normal' ? styles['normal-btn'] : ''}
 		${size === 'small' ? styles['small-btn'] : ''}
 		${size === 'large' ? styles['large-btn'] : ''}
-		${icon === 'left' ? styles['icon-left'] : ''}
-		${icon === 'right' ? styles['icon-right'] : ''}
-		${icon === 'only' ? styles['icon-only'] : ''}
+		${icon === 'left' && !wait? styles['icon-left'] : ''}
+		${icon === 'right' && !wait? styles['icon-right'] : ''}
+		${icon === 'only' && !wait? styles['icon-only'] : ''}
 		${className || ''}
 
 	`

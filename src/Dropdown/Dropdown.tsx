@@ -8,7 +8,7 @@ import {
 	Children,
 	type FocusEvent
 } from "react";
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
 import Arrow from "../Components/Arrow";
 import type {
 	IItem,

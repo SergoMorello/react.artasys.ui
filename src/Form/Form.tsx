@@ -12,10 +12,9 @@ export interface IForm extends UIComponent<FormHTMLAttributes<HTMLFormElement>> 
 	wait?: boolean;
 	progress?: number;
 	progressRadius?: boolean;
-	spinnerColor?: SpinnerProps['color'];
 }
 
-const Form = ({children, wait, progress, progressRadius = true, className, spinnerColor, onSubmit, ...props}: IForm) => {
+const Form = ({children, wait, progress, progressRadius = true, className, onSubmit, ...props}: IForm) => {
 
 	const submit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -33,7 +32,7 @@ const Form = ({children, wait, progress, progressRadius = true, className, spinn
 	return(<form {...props} onSubmit={submit} className={classes.join(' ')}>
 		{children}
 		<div className={styles['wait-indicator']}>
-			{typeof progress === 'number' ? <Progress radius={progressRadius} value={progress}/> : <Spinner color={spinnerColor}/>}
+			{typeof progress === 'number' ? <Progress radius={progressRadius} value={progress}/> : <Spinner/>}
 		</div>
 	</form>);
 };
