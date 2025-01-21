@@ -34,7 +34,7 @@
     border-radius: 8px ;
 	  border: none;
     cursor: pointer ;
-    transition: background-color .2s, transform .3s, color .3s,  ;
+    transition: background-color .2s, transform .2s, color .3s,  ;
     position: relative ;
     &:hover {
       transform: scale(1.025) ;
@@ -42,10 +42,9 @@
     }
     &:active {
         transform: scale(1) ;
-        outline: 3px solid var(--brand-300-primary) ;
-        outline-offset: -3px;
+        box-shadow: inset 0 0 0 3px var(--brand-300-primary) ;
         background-color: var(--brand-accent-primary) ;
-        transition: background-color .2s, outline 0s, outline-offset 0s ;
+        transition: background-color .2s, box-shadow .1s ;
       }
     &.icon-left::before,
     &.icon-right::after,
@@ -96,8 +95,7 @@
   .btn-secondary {
     background-color: transparent ;
     color: var(--brand-accent-primary) ;
-    outline: 2px solid var(--brand-accent-primary) ;
-    outline-offset: -1px ;
+    box-shadow: inset 0 0 0 2px var(--brand-accent-primary) ;
       &.icon-left::before,
       &.icon-right::after,
       &.icon-only::before {
@@ -106,7 +104,7 @@
       &:hover {
         background-color: transparent ;
         color: var(--brand-background-primary) ;
-        outline-color: var(--brand-background-primary) ;
+        box-shadow: inset 0 0 0 2px var(--brand-background-primary) ;
           &.icon-left::before,
           &.icon-right::after,
           &.icon-only::before {
@@ -115,8 +113,7 @@
       }
       &:active {
         color: var(--brand-accent-primary) ;
-        outline-color: var(--brand-300-primary) ;
-        outline-offset: -3px ;
+        box-shadow: inset 0 0 0 2px var(--brand-300-primary) ;
           &.icon-left::before,
           &.icon-right::after,
           &.icon-only::before {
@@ -130,8 +127,7 @@
  .btn-secondary-light {
   background-color: transparent ;
   color: var(--neutral-150) ;
-  outline: 2px solid var(--neutral-150) ;
-  outline-offset: -1px ;
+  box-shadow: inset 0 0 0 2px var(--neutral-150) ;
     &.icon-left::before,
     &.icon-right::after,
     &.icon-only::before {
@@ -140,7 +136,7 @@
     &:hover {
       background-color: transparent ;
       color: var(--brand-300-primary) ;
-      outline-color: var(--brand-300-primary) ;
+      box-shadow: inset 0 0 0 2px var(--brand-300-primary) ;
         &.icon-left::before,
         &.icon-right::after,
         &.icon-only::before {
@@ -148,15 +144,14 @@
         }
     }
     &:active {
-      outline: 3px solid var(--brand-300-primary) ;
-      outline-offset: -3px ;
+      box-shadow: inset 0 0 0 3px var(--brand-300-primary) ;
     }
 }
 
 /* Button-tertiary */
 
 .btn-tertiary {
-  background-color: var(--neutral-white) ;
+  background-color: transparent ;
   color: var(--brand-accent-primary) ;
     &.icon-left::before,
     &.icon-right::after,
@@ -164,8 +159,7 @@
       background-color: var(--brand-accent-primary) ;
     }
     &:hover {
-      background-color: var(--neutral-white) ;
-      font-size: 16px ;
+      background-color: transparent ;
       transform: scale(1) ;
       color: var(--brand-background-primary) ;
         &.icon-left::before,
@@ -175,8 +169,8 @@
         }
     }
     &:active {
-      background-color: var(--neutral-white) ;
-      outline: unset ;
+      background-color: transparent ;
+      box-shadow: unset ;
       color: var(--brand-accent-primary) ;
         &.icon-left::before,
         &.icon-right::after,

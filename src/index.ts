@@ -9,11 +9,14 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Spinner from "./Spinner";
 import Loading from "./Loading";
+import FileInput from "./FileInput";
 import File,{
 	TFileData,
 	TFileMime
 } from "./File";
-import Button from "./Button";
+import Button, {
+	ButtonProps
+} from "./Button";
 import UploadImages,{
 	IUploadImages,
 	TImageData,
@@ -53,7 +56,8 @@ export {
 	SelectOption,
 	SelectOptgroup,
 	Dropdown,
-	DropdownItem
+	DropdownItem,
+	FileInput,
 };
 export type {
 	TFileData,
@@ -61,6 +65,7 @@ export type {
 	IUploadImages,
 	IImage,
 	TImageData,
-	IElement
+	IElement,
+	ButtonProps
 };
 export default UI;

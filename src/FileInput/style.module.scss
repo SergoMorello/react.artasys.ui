@@ -1,0 +1,22 @@
+.ui-file-btn {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--brand-accent-primary);
+    color: var(--brand-accent-primary);
+    font-size: 1rem;
+    border-radius: 8px;
+    width: max-content;
+    margin: 0 auto;
+    padding: 16px 36px;
+    max-height: 50px;
+        &::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            background-color: var(--brand-accent-primary);
+        }
+}

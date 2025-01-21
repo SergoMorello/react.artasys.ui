@@ -8,5 +8,5 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 	size?: 'normal' | 'small' | 'large';
 	icon?: 'left' | 'right' | 'only' | 'no';
 }
-declare const Button: React.FC<ButtonProps> = ({ children, className, classNameContainer, styleContainer, spinnerColor, wait, ...props }) => JSX.Element;
+declare const Button = ({ children, className, classNameContainer, styleContainer, spinnerColor, wait, ...props }: ButtonProps) => JSX.Element;
 export default Button;

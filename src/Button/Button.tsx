@@ -1,9 +1,8 @@
-import { useEffect, type ButtonHTMLAttributes, type HTMLAttributes } from "react";
+import { type ButtonHTMLAttributes, type HTMLAttributes } from "react";
 import styles from "./style.module.scss";
 import Spinner,{
 	type SpinnerProps
 } from "../Spinner";
-import type { UIComponent } from "../ui-types";
 import Loading from "../Loading";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -15,22 +14,14 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	icon?: 'left' | 'right' | 'only' | 'no';
 }
 
-const Button: React.FC<ButtonProps> = ({children, className, classNameContainer, styleContainer, wait = false, variant, size = 'normal', icon, ...props}) => {
+const Button = ({children, className, classNameContainer, styleContainer, wait = false, variant, size = 'normal', icon, ...props}: ButtonProps) => {
 
 	const buttonClasses = `
 		${styles.btn}
-		${variant === 'light' ? styles['btn-light'] : ''}
-		${variant === 'secondary' ? styles['btn-secondary'] : ''}
-		${variant === 'secondary-light' ? styles['btn-secondary-light'] : ''}
-		${variant === 'tertiary' ? styles['btn-tertiary'] : ''}
-		${size === 'normal' ? styles['normal-btn'] : ''}
-		${size === 'small' ? styles['small-btn'] : ''}
-		${size === 'large' ? styles['large-btn'] : ''}
-		${icon === 'left' && !wait? styles['icon-left'] : ''}
-		${icon === 'right' && !wait? styles['icon-right'] : ''}
-		${icon === 'only' && !wait? styles['icon-only'] : ''}
+		${variant && styles[`btn-${variant}`]}
+		${size && styles[`${size}-btn`]}
+		${icon && !wait ? styles[`icon-${icon}`] : ''}
 		${className || ''}
-
 	`
 	.replace(/\s+/g, ' ')
 	.trim();
