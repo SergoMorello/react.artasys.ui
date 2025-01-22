@@ -9,7 +9,9 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Spinner from "./Spinner";
 import Loading from "./Loading";
-import FileInput from "./FileInput";
+import FileInput, { 
+	IFileInput
+} from "./FileInput";
 import File,{
 	TFileData,
 	TFileMime
@@ -66,6 +68,7 @@ export type {
 	IImage,
 	TImageData,
 	IElement,
-	ButtonProps
+	ButtonProps,
+	IFileInput
 };
 export default UI;

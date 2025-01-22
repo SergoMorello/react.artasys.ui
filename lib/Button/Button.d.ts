@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type HTMLAttributes } from "react";
 import { TSpinner } from "../Spinner";
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	wait?: boolean;
@@ -8,5 +8,5 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 	size?: 'normal' | 'small' | 'large';
 	icon?: 'left' | 'right' | 'only' | 'no';
 }
-declare const Button = ({ children, className, classNameContainer, styleContainer, spinnerColor, wait, ...props }: ButtonProps) => JSX.Element;
+declare const Button: ({ children, className, classNameContainer, styleContainer, wait, ...props }: ButtonProps) => JSX.Element;
 export default Button;

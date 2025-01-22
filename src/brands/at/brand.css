@@ -1,8 +1,8 @@
 body.brand-at {
-    --brand-accent-primary: #02505E;
+    --brand-primary: #02505E;
     --brand-accent-primary-rgb: 2, 80, 94;
     --brand-300-primary: #11889D;
-    --brand-background-primary: #04141F;
+    --brand-accent-primary: #04141F;
 
     --neutral-white: #FFFFFF;
     --neutral-100: #F6F6F6;
