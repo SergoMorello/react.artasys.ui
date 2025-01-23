@@ -7,6 +7,7 @@ export type TFileData = {
     mime: TFileMime;
     data: string;
     base64?: string | null | ArrayBuffer;
+    children?: React.ReactNode;
 };
 interface TFile<T = any> extends Omit<AllHTMLAttributes<T>, 'onChange' | 'accept'> {
     onChange?: (data: TFileData) => void;

@@ -1,4 +1,4 @@
-import {
+import React, {
 	forwardRef,
 	useRef,
 	useEffect,
@@ -14,9 +14,10 @@ import { UIComponent } from "../ui-types";
 export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
 	onChangeText?: (text: string) => void;
 	wait?: boolean;
+	children?: React.ReactNode;
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, formValue, wait, ...props}, ref) => {
+const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(({onChange, onInput, onChangeText, formValue, wait, children, ...props}, ref) => {
 	const textareaRef = useRef<HTMLTextAreaElement>(null);
 	const [currentValue, setCurrentValue] = useState(props.value);
 

@@ -15,9 +15,10 @@ export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
 	onChangeText?: (text: string) => void;
 	type?: HTMLInputTypeAttribute;
 	wait?: boolean;
+	children?: React.ReactNode;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, wait, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, wait, children, ...props}, ref) => {
 	const [currentValue, setCurrentValue] = useState('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

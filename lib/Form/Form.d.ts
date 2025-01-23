@@ -6,6 +6,7 @@ interface IForm extends FormHTMLAttributes<HTMLFormElement> {
     progress?: number;
     progressRadius?: boolean;
     spinnerColor?: TSpinner['color'];
+    children?: React.ReactNode;
 }
 declare const Form: ({ children, wait, progress, progressRadius, className, spinnerColor, onSubmit, ...props }: IForm) => JSX.Element;
 export default Form;

@@ -12,6 +12,7 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
     enableRerenderItems?: boolean;
     onShow?: () => void;
     onHide?: () => void;
+    children?: React.ReactNode;
 }
 declare const Dropdown: ({ children, className, items, arrow, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => JSX.Element;
 export default Dropdown;
