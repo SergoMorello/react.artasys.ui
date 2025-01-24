@@ -74,8 +74,9 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-	library: 'UI',
-	libraryTarget: 'umd',
+	library: {
+		type: 'commonjs2',
+	},
 	auxiliaryComment: 'Arta System UI'
   },
   externals: {

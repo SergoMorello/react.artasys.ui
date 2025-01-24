@@ -12,5 +12,5 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
     hiddenContainer?: boolean;
     wait?: boolean;
 }
-declare const Element: ({ children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, wait, ...props }: IElement) => JSX.Element;
+declare const Element: ({ children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, wait, ...props }: IElement) => import("react/jsx-runtime").JSX.Element;
 export default Element;

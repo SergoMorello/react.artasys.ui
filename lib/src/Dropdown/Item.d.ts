@@ -7,5 +7,5 @@ export interface IItem extends Omit<AllHTMLAttributes<HTMLLIElement>, 'children'
     autoClose?: boolean;
     active?: boolean;
 }
-declare const Item: ({ children, onClick, autoClose, active, className, ...props }: IItem) => JSX.Element;
+declare const Item: ({ children, onClick, autoClose, active, className, ...props }: IItem) => import("react/jsx-runtime").JSX.Element;
 export default Item;

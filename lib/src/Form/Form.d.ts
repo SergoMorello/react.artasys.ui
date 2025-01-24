@@ -6,5 +6,5 @@ export interface IForm extends UIComponent<FormHTMLAttributes<HTMLFormElement>> 
     progress?: number;
     progressRadius?: boolean;
 }
-declare const Form: ({ children, wait, progress, progressRadius, className, onSubmit, ...props }: IForm) => JSX.Element;
+declare const Form: ({ children, wait, progress, progressRadius, className, onSubmit, ...props }: IForm) => import("react/jsx-runtime").JSX.Element;
 export default Form;

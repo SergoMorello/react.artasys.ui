@@ -45,7 +45,6 @@
     "@storybook/react-webpack5": "^8.4.7",
     "@storybook/test": "^8.4.7",
     "@types/jest": "^29.5.0",
-    "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "autoprefixer": "^10.4.16",
     "babel-jest": "^29.5.0",
@@ -64,6 +63,7 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "@types/react": "^18.2.0",
     "react-hook-form": "^7.47.0"
   },
   "peerDependencies": {

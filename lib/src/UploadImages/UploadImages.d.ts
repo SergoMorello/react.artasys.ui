@@ -5,5 +5,5 @@ export interface IUploadImages {
     onClick?: (data: TImageData) => void;
     imagesArray?: TImageData[];
 }
-declare const UploadImages: ({ imagesArray, onChange, onChangeArray, onClick }: IUploadImages) => JSX.Element;
+declare const UploadImages: ({ imagesArray, onChange, onChangeArray, onClick }: IUploadImages) => import("react/jsx-runtime").JSX.Element;
 export default UploadImages;

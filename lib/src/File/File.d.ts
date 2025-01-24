@@ -14,5 +14,5 @@ export interface TFile<T = any> extends UIComponent<Omit<AllHTMLAttributes<T>, '
     multiple?: boolean;
     accept?: TFileMime[];
 }
-declare const File: ({ onChange, children, multiple, accept, ...props }: TFile) => JSX.Element;
+declare const File: ({ onChange, children, multiple, accept, ...props }: TFile) => import("react/jsx-runtime").JSX.Element;
 export default File;

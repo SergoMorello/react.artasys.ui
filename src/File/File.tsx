@@ -24,7 +24,7 @@ export interface TFile<T = any> extends UIComponent<Omit<AllHTMLAttributes<T>, '
 };
 
 const File = ({onChange, children, multiple, accept, ...props}: TFile) => {
-	const selector = useRef<HTMLInputElement>();
+	const selector = useRef<HTMLInputElement | null>(null);
 
 	const handleChange = (e: Event) => {
 		const target = e.target as HTMLInputElement

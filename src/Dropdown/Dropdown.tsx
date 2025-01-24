@@ -36,7 +36,7 @@ export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>
 
 const Dropdown = ({children, className, items, arrow = true, direction = 'down', position = 'right', split = false, disabled, hover = false, enableRerenderItems = true, onShow, onHide, ...props}: IDropdown) => {
 	const containerRef = useRef<HTMLDivElement>(null);
-	const hoverTimeout = useRef<ReturnType<typeof setTimeout>>();
+	const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const [isOpen, setOpen] = useState(false);
 
 	const close = () => {

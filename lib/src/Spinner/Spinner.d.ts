@@ -4,5 +4,5 @@ export interface SpinnerProps extends UIComponent<Omit<AllHTMLAttributes<HTMLDiv
     size?: 'small' | 'middle' | 'large';
     contrast?: boolean;
 }
-declare const Spinner: ({ size, contrast, ...props }: SpinnerProps) => JSX.Element;
+declare const Spinner: ({ size, contrast, ...props }: SpinnerProps) => import("react/jsx-runtime").JSX.Element;
 export default Spinner;

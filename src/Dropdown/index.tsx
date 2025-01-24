@@ -2,7 +2,7 @@ import {
 	forwardRef,
 	RefAttributes,
 	ForwardRefExoticComponent,
-	FC
+	FC,
 } from "react";
 import {
 	default as DropdownUI,

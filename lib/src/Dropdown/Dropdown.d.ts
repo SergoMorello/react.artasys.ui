@@ -14,5 +14,5 @@ export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>
     onShow?: () => void;
     onHide?: () => void;
 }
-declare const Dropdown: ({ children, className, items, arrow, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => JSX.Element;
+declare const Dropdown: ({ children, className, items, arrow, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => import("react/jsx-runtime").JSX.Element;
 export default Dropdown;

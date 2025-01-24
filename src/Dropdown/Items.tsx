@@ -32,7 +32,7 @@ const Items = ({items, isOpen, enableRerenderItems, disabled}: IItems) => {
 
 	if (disabled) return null;
 
-	return(<ul className={styles['dropdown-list']} children={renderItems} ref={listRef}/>);
+	return(<ul className={`${styles['dropdown-list']} ui-dropdown-list`} children={renderItems} ref={listRef}/>);
 };
 
 export default Items;
