@@ -1,12 +1,10 @@
 import { FormHTMLAttributes, ReactNode } from 'react';
-import { TSpinner } from '../Spinner';
-interface IForm extends FormHTMLAttributes<HTMLFormElement> {
+import { UIComponent } from '../ui-types';
+export interface IForm extends UIComponent<FormHTMLAttributes<HTMLFormElement>> {
     children: ReactNode;
     wait?: boolean;
     progress?: number;
     progressRadius?: boolean;
-    spinnerColor?: TSpinner['color'];
-    children?: React.ReactNode;
 }
-declare const Form: ({ children, wait, progress, progressRadius, className, spinnerColor, onSubmit, ...props }: IForm) => JSX.Element;
+declare const Form: ({ children, wait, progress, progressRadius, className, onSubmit, ...props }: IForm) => import("react/jsx-runtime").JSX.Element;
 export default Form;

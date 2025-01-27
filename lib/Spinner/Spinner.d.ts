@@ -1,7 +1,8 @@
 import { AllHTMLAttributes } from "react";
-export type TSpinner = Omit<AllHTMLAttributes<HTMLDivElement>, 'size' | 'color'> & {
+import type { UIComponent } from "../ui-types";
+export interface SpinnerProps extends UIComponent<Omit<AllHTMLAttributes<HTMLDivElement>, 'size'>> {
     size?: 'small' | 'middle' | 'large';
-    color?: 'contrast' | 'orange';
-};
-declare const Spinner: ({ size, color, ...props }: TSpinner) => JSX.Element;
+    contrast?: boolean;
+}
+declare const Spinner: ({ size, contrast, ...props }: SpinnerProps) => import("react/jsx-runtime").JSX.Element;
 export default Spinner;

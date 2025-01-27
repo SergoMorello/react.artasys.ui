@@ -12,5 +12,5 @@ export interface IImage extends TFileData {
     id?: string | number;
     src?: string;
 }
-declare const Image: ({ onChange, onClick, onId, onRemove, ...props }: IImage) => JSX.Element;
+declare const Image: ({ onChange, onClick, onId, onRemove, ...props }: IImage) => import("react/jsx-runtime").JSX.Element;
 export default Image;

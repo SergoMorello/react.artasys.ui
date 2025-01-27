@@ -1,3 +1,3 @@
-import Spinner, { TSpinner } from "./Spinner";
-export type { TSpinner };
+import Spinner, { type SpinnerProps } from "./Spinner";
+export type { SpinnerProps };
 export default Spinner;

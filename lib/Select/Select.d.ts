@@ -4,10 +4,10 @@ import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
 export declare const Context: import("react").Context<{
     selected: string;
-    emptyValue: import("react").MutableRefObject<boolean>;
+    emptyValue: React.MutableRefObject<boolean>;
     setSelect: (value: string) => void;
     setSelected: (value: string) => void;
-    setTitle: (title: IOption['children']) => void;
+    setTitle: (title: IOption["children"]) => void;
 }>;
 export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[] | ReactNode;
 export interface ISelect extends Omit<IElement, 'children'> {

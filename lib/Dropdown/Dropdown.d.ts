@@ -1,7 +1,8 @@
 import { AllHTMLAttributes, FunctionComponentElement } from "react";
 import type { IItem, TChildrenAction } from "./Item";
+import { UIComponent } from "../ui-types";
 export declare const Context: import("react").Context<TChildrenAction>;
-export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
+export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>> {
     direction?: 'down' | 'up';
     position?: 'left' | 'right';
     split?: boolean;
@@ -12,7 +13,6 @@ export interface IDropdown extends AllHTMLAttributes<HTMLDivElement> {
     enableRerenderItems?: boolean;
     onShow?: () => void;
     onHide?: () => void;
-    children?: React.ReactNode;
 }
-declare const Dropdown: ({ children, className, items, arrow, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => JSX.Element;
+declare const Dropdown: ({ children, className, items, arrow, direction, position, split, disabled, hover, enableRerenderItems, onShow, onHide, ...props }: IDropdown) => import("react/jsx-runtime").JSX.Element;
 export default Dropdown;

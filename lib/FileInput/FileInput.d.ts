@@ -1,6 +1,6 @@
-import { IElement } from '../Form/Element';
-import { UIComponent } from '../../src/ui-types';
 import { ReactNode } from 'react';
+import { IElement } from '../Form/Element';
+import { UIComponent } from '../ui-types';
 export interface IFileInput extends UIComponent<IElement<HTMLInputElement>> {
     onChangeFiles?: (files: FileList | null) => void;
     accept?: string;
@@ -9,5 +9,5 @@ export interface IFileInput extends UIComponent<IElement<HTMLInputElement>> {
     wait?: boolean;
     className?: string;
 }
-declare const FileInput: ({ onChange, onChangeFiles, accept, multiple, wait, children, className, ...props }: IFileInput) => JSX.Element;
+declare const FileInput: ({ onChange, onChangeFiles, accept, multiple, wait, children, className, ...props }: IFileInput) => import("react/jsx-runtime").JSX.Element;
 export default FileInput;

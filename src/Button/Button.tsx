@@ -36,10 +36,11 @@ const Button = ({children, className, classNameContainer, styleContainer, wait =
 	return(
 		<div className={containerClasses.join(' ')} style={styleContainer}>
 			<button {...props} className={buttonClasses}>{!wait && children}</button>
-			<div className={'ui-button-spinner ' + styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
-				{/* <Spinner size="small" color={spinnerColor}/> */}
-				<Loading color={variant}/>
-			</div>
+			{wait && (
+				<div className={'ui-button-spinner ' + styles['wait-indicator'] + (wait ? ' ' + styles['active'] : '')}>
+					<Loading color={variant}/>
+				</div>
+			)}
 		</div>
 	)
 };

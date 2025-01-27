@@ -1,8 +1,10 @@
-/// <reference types="react" />
+import React from "react";
 import { IElement } from "../Form/Element";
-interface ITextArea extends IElement<HTMLTextAreaElement> {
+import { UIComponent } from "../ui-types";
+export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
     onChangeText?: (text: string) => void;
+    wait?: boolean;
     children?: React.ReactNode;
 }
-declare const TextArea: import("react").ForwardRefExoticComponent<ITextArea & import("react").RefAttributes<HTMLTextAreaElement>>;
+declare const TextArea: React.ForwardRefExoticComponent<ITextArea & React.RefAttributes<HTMLTextAreaElement>>;
 export default TextArea;
