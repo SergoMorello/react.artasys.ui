@@ -1,22 +1,30 @@
-.ui-file-btn {
+.file-btn {
     display: flex;
     align-items: center;
-    border: 2px solid var(--brand-primary);
+    box-shadow: inset 0 0 0 2px var(--brand-primary);
     color: var(--brand-primary);
     font-size: 1rem;
     border-radius: 8px;
+    min-width: 80px;
     width: max-content;
+    min-height: 20px;
     margin: 0 auto;
     padding: 16px 36px;
     max-height: 50px;
-        &::after {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            mask-repeat: no-repeat;
-            mask-position: center;
-            background-color: var(--brand-primary);
+    cursor: pointer;
+    transition: box-shadow .2s;
+        &:hover {
+            box-shadow: inset 0 0 0 3px var(--brand-primary);
         }
+}
+
+.icon::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--brand-primary);
 }

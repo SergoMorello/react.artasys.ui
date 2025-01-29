@@ -69,6 +69,6 @@ export type {
 	TImageData,
 	IElement,
 	ButtonProps,
-	IFileInput
+	IFileInput,
 };
 export default UI;

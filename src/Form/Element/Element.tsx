@@ -46,13 +46,12 @@ const Element = ({children, beforeElement, afterElement, error, placeholder, sty
 			<div className={'ui-form-element ' + styles['element']}>
 				{typeof children === 'function' ? children(props) : null}
 				{placeholder && wait ? '' :  <span className={'ui-form-element-placeholder ' + styles['placeholder']}>{placeholder}</span>}
+				{wait && (
+					<Loading />
+			)}
 			</div>
 			{afterElement ? cloneElement(afterElement, {key: 'ui-after-element'}) : null}
-			{wait && (
-				<div className={`ui-loading-element ${styles['loading-container']}`}>
-					<Loading />
-				</div>
-			)}
+			
 		</label>
 		{currentError && <div className={'ui-form-error ' + styles['error']}>{currentError}</div>}
 	</>);

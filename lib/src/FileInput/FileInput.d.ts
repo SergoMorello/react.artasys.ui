@@ -8,6 +8,7 @@ export interface IFileInput extends UIComponent<IElement<HTMLInputElement>> {
     children?: ReactNode;
     wait?: boolean;
     className?: string;
+    icon?: boolean;
 }
-declare const FileInput: ({ onChange, onChangeFiles, accept, multiple, wait, children, className, ...props }: IFileInput) => import("react/jsx-runtime").JSX.Element;
+declare const FileInput: ({ onChange, onChangeFiles, accept, multiple, wait, children, className, icon, ...props }: IFileInput) => import("react/jsx-runtime").JSX.Element;
 export default FileInput;

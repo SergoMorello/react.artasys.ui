@@ -10,10 +10,16 @@ export interface IFileInput extends UIComponent<IElement<HTMLInputElement>> {
     children?: ReactNode;
     wait?: boolean;
     className?: string;
+    icon?: boolean;
 }
 
-const FileInput = ({ onChange, onChangeFiles, accept, multiple, wait, children, className, ...props }: IFileInput) => {
+const FileInput = ({ onChange, onChangeFiles, accept, multiple, wait, children, className, icon, ...props }: IFileInput) => {
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const fileInputClasses = `
+        ${styles['file-btn']}
+        ${icon && !wait ? styles.icon : ''}
+    `.trim();
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
@@ -33,7 +39,7 @@ const FileInput = ({ onChange, onChangeFiles, accept, multiple, wait, children, 
             {(props) => 
                 <>
                     <input type='file' ref={fileInputRef} onChange={handleChange} accept={accept} multiple={multiple} style={{ display: "none" }} {...props}/>
-                    <div className={`${styles['ui-file-btn']} ${className || ""}`} style={{ cursor: wait ? "not-allowed" : "pointer"}}>{children || "Выбрать файл"}</div>
+                    <div className={`ui-file-uploader ${fileInputClasses} ${className || ""}`}>{!wait && (children || "Выбрать файл")}</div>
                 </>
             }
         </Element>

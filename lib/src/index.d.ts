@@ -15,5 +15,5 @@ import Dropdown, { DropdownItem } from "./Dropdown";
 import './brands/brands.css';
 declare const UI: {};
 export { Form, FormElement, Element, useForm, Input, TextArea, Spinner, Loading, File, Button, UploadImages, Checkbox, Progress, Select, SelectOption, SelectOptgroup, Dropdown, DropdownItem, FileInput, };
-export type { TFileData, TFileMime, IUploadImages, IImage, TImageData, IElement, ButtonProps, IFileInput };
+export type { TFileData, TFileMime, IUploadImages, IImage, TImageData, IElement, ButtonProps, IFileInput, };
 export default UI;
