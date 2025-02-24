@@ -135,8 +135,9 @@
     &.icon-only::before {
       background-color: var(--neutral-white) ;
     }
-    &:hover {
-      background-color: transparent ;
+    &:hover,
+    &:active {
+      background-color: transparent;
       color: var(--brand-300-primary) ;
       box-shadow: inset 0 0 0 2px var(--brand-300-primary) ;
         &.icon-left::before,
@@ -158,7 +159,7 @@
     &.icon-left::before,
     &.icon-right::after,
     &.icon-only::before {
-      background-color: var(--brand-primary) ;
+      background-color: var(--brand-accent-primary) ;
     }
     &:hover {
       background-color: transparent ;
@@ -167,17 +168,17 @@
         &.icon-left::before,
         &.icon-right::after,
         &.icon-only::before {
-          background-color: var(--brand-accent-primary) ;
+          background-color: var(--brand-primary) ;
         }
     }
     &:active {
       background-color: transparent ;
       box-shadow: unset ;
-      color: var(--brand-accent-primary) ;
+      color: var(--brand-300-primary) ;
         &.icon-left::before,
         &.icon-right::after,
         &.icon-only::before {
-          background-color: var(--brand-primary) ;
+          background-color: var(--brand-300-primary) ;
         }
     }
 }
