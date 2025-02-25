@@ -24,7 +24,7 @@
 	position: relative;
 	justify-content: center;
 	align-items: center;
-	outline: 1px solid var(--brand-accent-primary);
+	outline: 1px solid var(--brand-primary);
 	outline-offset: -1px;
 	border-radius: 2px;
 	width: 20px;
@@ -32,7 +32,7 @@
 	aspect-ratio: 1/1;
 	transition: .1s;
 		&:hover {
-			box-shadow: inset 0 0 0 2px var(--brand-accent-primary);
+			box-shadow: inset 0 0 0 2px var(--brand-primary);
 		}
 		&::before {
 			content: "";
@@ -63,11 +63,11 @@
 }
 
 .container > input[type="radio"]:checked ~ .indicator {
-	box-shadow: inset 0 0 0 5px var(--brand-accent-primary);
+	box-shadow: inset 0 0 0 5px var(--brand-primary);
 }
 
 .container > input[type="checkbox"]:checked ~ .indicator {
-	background-color: var(--brand-accent-primary);
+	background-color: var(--brand-primary);
 }
 
 .container > input:checked ~ .indicator::before {
