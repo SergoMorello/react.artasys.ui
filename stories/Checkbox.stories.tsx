@@ -13,6 +13,7 @@ const Template: StoryFn<ICheckbox> = (args) => <Checkbox {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+  placeholder: "placeholder"
 };
 
 export const Secondary = Template.bind({});
