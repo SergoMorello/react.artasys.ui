@@ -18,7 +18,7 @@ export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
 	children?: React.ReactNode;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, formValue, wait, children, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, wait, children, ...props}, ref) => {
 	const [currentValue, setCurrentValue] = useState('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,9 +40,9 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	};
 
 	useEffect(() => {
-		const value = props.value ?? formValue;
+		const value = props.value;
 		setCurrentValue(value ? String(value) : '');
-	}, [props.value, formValue]);
+	}, [props.value]);
 
 	return(<Element {...props} wait={wait}>
 		{ (props) => <input {...props} placeholder="" onChange={handleChange} disabled={wait} value={wait ? '' : currentValue} onInput={handleInput} ref={ref}/> }
