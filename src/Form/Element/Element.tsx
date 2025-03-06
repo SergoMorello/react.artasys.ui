@@ -19,7 +19,7 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
 	beforeElement?: React.ReactElement;
 	afterElement?: React.ReactElement;
 	hiddenContainer?: boolean;
-	wait?: boolean
+	wait?: boolean;
 }
 
 const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, wait, ...props}: IElement) => {
