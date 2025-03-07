@@ -11,7 +11,7 @@ import Loading from "../../Loading";
 export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'> {
 	children?: ((props: AllHTMLAttributes<T>) => ReactElement) | AllHTMLAttributes<T>["children"];
 	error?: string;
-	formValue?: string | number;
+	formvalue?: string | number;
 	disabled?: boolean;
 	placeholder?: string;
 	styleContainer?: React.HTMLAttributes<T>["style"];
@@ -22,7 +22,7 @@ export interface IElement<T = any> extends Omit<AllHTMLAttributes<T>, 'children'
 	wait?: boolean;
 }
 
-const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formValue, wait, ...props}: IElement) => {
+const Element = ({children, beforeElement, afterElement, error, placeholder, styleContainer, classNameContainer, hiddenContainer, formvalue, wait, ...props}: IElement) => {
 	const [currentError, setCurrentError] = useState('');
 
 	useEffect(() => {
