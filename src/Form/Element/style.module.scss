@@ -41,6 +41,16 @@
 	transition: .2s;
 }
 
+.element > input:disabled,
+.element > textarea:disabled,
+.element > input:disabled:hover,
+.element > textarea:disabled:hover {
+	background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+    color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+	border-color: rgba(118, 118, 118, 0.3);
+	box-shadow:inset 0 0 0 1px rgba(118, 118, 118, 0.3);
+}
+
 .container.disabled {
 	background-color: var(--neutral-200);
 }

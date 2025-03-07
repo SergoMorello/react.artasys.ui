@@ -6,6 +6,7 @@ export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
     type?: HTMLInputTypeAttribute;
     wait?: boolean;
     children?: React.ReactNode;
+    disabled?: boolean;
 }
 declare const Input: import("react").ForwardRefExoticComponent<IInput & import("react").RefAttributes<HTMLInputElement>>;
 export default Input;
