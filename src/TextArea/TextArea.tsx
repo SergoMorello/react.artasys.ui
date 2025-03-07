@@ -15,9 +15,9 @@ export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(
-    ({ onChange, onInput, onChangeText, wait, ...props }, ref) => {
+    ({ onChange, onInput, onChangeText, formvalue, wait, ...props }, ref) => {
         const textareaRef = useRef<HTMLTextAreaElement>(null);
-        const [currentValue, setCurrentValue] = useState(props.value ?? "");
+        const [currentValue, setCurrentValue] = useState(props.value ?? formvalue ?? "");
 
         const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
             if (typeof onChange === "function") {
@@ -32,23 +32,23 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(
             if (typeof onInput === "function") {
                 onInput(e);
             }
-            setCurrentValue(e.target.value); // Обновляем сразу
+            setCurrentValue(e.target.value); 
         };
 
         useEffect(() => {
             const textarea = textareaRef.current;
             if (!textarea) return;
 
-            const currentHeight = textarea.offsetHeight; // Сохраняем текущую высоту
-            textarea.style.height = "auto"; // Сбрасываем для точного scrollHeight
+            const currentHeight = textarea.offsetHeight; 
+            textarea.style.height = "auto";
             const scrollHeight = textarea.scrollHeight;
-            const newHeight = Math.max(scrollHeight, 50); // Минимум 50px
-            textarea.style.height = `${Math.max(newHeight, currentHeight)}px`; // Не уменьшаем
+            const newHeight = Math.max(scrollHeight, 50); 
+            textarea.style.height = `${Math.max(newHeight, currentHeight)}px`;
         }, [currentValue]);
 
         useEffect(() => {
-            setCurrentValue(props.value ?? "");
-        }, [props.value]);
+            setCurrentValue(props.value ?? formvalue ?? "");
+        }, [props.value, formvalue]);
 
         useImperativeHandle(ref, () => textareaRef.current as HTMLTextAreaElement);
 
