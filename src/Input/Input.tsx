@@ -16,9 +16,10 @@ export interface IInput extends UIComponent<IElement<HTMLInputElement>> {
 	type?: HTMLInputTypeAttribute;
 	wait?: boolean;
 	children?: React.ReactNode;
+	disabled?: boolean;
 }
 
-const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, wait, formvalue, children, ...props}, ref) => {
+const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChangeText, wait, disabled, formvalue, children, ...props}, ref) => {
 	const [currentValue, setCurrentValue] = useState('');
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +33,7 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	};
 
 	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-		if (props.disabled) return;
+		if (disabled || wait) return;
 		if (typeof onInput === 'function') {
 			onInput(e);
 		}
@@ -45,7 +46,7 @@ const Input = forwardRef<HTMLInputElement, IInput>(({onChange, onInput, onChange
 	}, [props.value, formvalue]);
 
 	return(<Element {...props} wait={wait}>
-		{ (props) => <input {...props} placeholder="" onChange={handleChange} disabled={wait} value={wait ? '' : currentValue} onInput={handleInput} ref={ref}/> }
+		{ (props) => <input {...props} placeholder="" onChange={handleChange} disabled={disabled || wait} value={wait ? '' : currentValue} onInput={handleInput} ref={ref}/> }
 	</Element>);
 });
 
