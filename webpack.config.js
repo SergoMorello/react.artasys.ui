@@ -1,90 +1,100 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: {
-	index: '/src/index.ts'
-  },
-  target: 'web',
-  mode: 'production', //production | development
-  devtool: "source-map",
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-			'ts-loader'
-		],
-        exclude: /node_modules/,
-      },
-	  {
-		test: /\.(s[ac]ss|css)$/i, // Обрабатывает .css, .scss и .sass файлы
-		oneOf: [
-		  // CSS/SCSS модули
-		  {
-			test: /\.module\.(s[ac]ss|css)$/i, // Только модули
-			use: [
-			  'style-loader',
-			  {
-				loader: 'css-loader',
-				options: {
-				  modules: { // Включение CSS-модулей
-					localIdentName: '[name]__[local]___[hash:base64:5]', // Уникальные имена классов
-				  },
-				},
-			  },
-			  'sass-loader', // Для .scss и .sass файлов
-			  {
-				loader: 'postcss-loader', // PostCSS (например, autoprefixer)
-				options: {
-				  postcssOptions: {
-					plugins: [
-					  ['autoprefixer', {}],
-					],
-				  },
-				},
-			  },
-			],
-		  },
-		  // Обычные CSS/SCSS (не модули)
-		  {
-			use: [
-			  'style-loader',
-			  'css-loader', // Без модулей
-			  'sass-loader', // Для .scss и .sass файлов
-			  {
-				loader: 'postcss-loader', // PostCSS (например, autoprefixer)
-				options: {
-				  postcssOptions: {
-					plugins: [
-					  ['autoprefixer', {}],
-					],
-				  },
-				},
-			  },
-			],
-		  },
-		],
-	  },
-    ],
-  },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
-	library: {
-		type: 'commonjs2',
+	entry: {
+		index: path.resolve(__dirname, 'src/index.ts'),
 	},
-	auxiliaryComment: 'Arta System UI'
-  },
-  externals: {
-    react: {
-       root: 'React',
-       commonjs: 'react',
-       commonjs2: 'react',
-       amd: 'react',
-    }
-  }
+
+	target: ['web', 'es2020'],
+	mode: 'production',
+	devtool: 'source-map',
+
+	module: {
+		rules: [
+			// TS / TSX
+			{
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
+
+			// CSS / SCSS Modules
+			{
+				test: /\.(s[ac]ss|css)$/i,
+				oneOf: [
+					// ✅ CSS Modules
+					{
+						test: /\.module\.(s[ac]ss|css)$/i,
+						use: [
+							MiniCssExtractPlugin.loader,
+							{
+							loader: 'css-loader',
+							options: {
+								modules: {
+									localIdentName: '[name]__[local]___[hash:base64:5]',
+								},
+							},
+							},
+							'sass-loader',
+							{
+							loader: 'postcss-loader',
+							options: {
+								postcssOptions: {
+									plugins: [['autoprefixer', {}]],
+								},
+							},
+							},
+						],
+					},
+
+					// Обычный CSS / SCSS (brands.css, reset.css и т.п.)
+					{
+						use: [
+							MiniCssExtractPlugin.loader,
+							'css-loader',          // ← ВАЖНО: без modules
+							'sass-loader',
+							{
+							loader: 'postcss-loader',
+							options: {
+								postcssOptions: {
+									plugins: [['autoprefixer', {}]],
+								},
+							},
+							},
+						],
+					},
+				],
+			},
+    	],
+  	},
+
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js'],
+	},
+
+	output: {
+		filename: '[name].js',
+		path: path.resolve(__dirname, 'dist'),
+		library: {
+		type: 'module',
+		},
+		clean: true,
+		auxiliaryComment: 'Arta System UI'
+	},
+
+	experiments: {
+		outputModule: true,
+	},
+
+	externals: {
+		react: 'react',
+		'react-dom': 'react-dom',
+	},
+
+	plugins: [
+		new MiniCssExtractPlugin({
+		filename: 'styles.css',
+		}),
+	],
 };
