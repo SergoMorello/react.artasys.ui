@@ -94,7 +94,7 @@
 }
 
 .title {
-	flex: 1;
+	color: var(--neutral-900-text);
 }
 
 .select-list li.option {

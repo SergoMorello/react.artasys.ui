@@ -40,7 +40,7 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 	const [isOpen, setOpen] = useState(false);
 	const [selected, setSelected] = useState('');
 	const [title, setTitle] = useState<IOption['children']>();
-
+	
 	const open = () => {
 		if (props.disabled) return;
 		setOpen(true);

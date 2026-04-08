@@ -2,7 +2,8 @@ import {
 	LiHTMLAttributes,
 	MouseEvent,
 	useContext,
-	useEffect
+	useEffect,
+	useMemo
 } from "react";
 import { Context } from "./Select";
 import styles from "./style.module.css";
@@ -32,14 +33,17 @@ const Option = ({children, value, disabled, hidden, onClick, ...props}: IOption)
 			}
 			context.emptyValue.current = true;
 		}
-	}, [context.selected]);
+	}, [context.selected, context.emptyValue.current]);
 	
 	if (hidden) return(null);
 
-	const classes = ['ui-select-option'];
-	classes.push(styles['option']);
-	if (context.selected === value) classes.push(styles['active'], 'active');
-	if (disabled) classes.push(styles['disabled'], 'disabled');
+	const classes = useMemo(() => {
+		const classes = ['ui-select-option'];
+		classes.push(styles['option']);
+		if (context.selected === value) classes.push(styles['active'], 'active');
+		if (disabled) classes.push(styles['disabled'], 'disabled');
+		return classes;
+	}, [context.selected, disabled]);
 	
 	return(<li {...props} onClick={handleClick} className={classes.join(' ')}>{children}</li>);
 };

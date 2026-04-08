@@ -37,9 +37,6 @@ import Provider from "./Provider";
 
 import './brands/brands.css'
 
-const UI = {
-	
-};
 
 export {
 	Provider,
@@ -73,4 +70,3 @@ export type {
 	ButtonProps,
 	IFileInput,
 };
-export default UI;
