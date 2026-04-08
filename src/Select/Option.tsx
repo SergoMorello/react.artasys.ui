@@ -7,6 +7,7 @@ import {
 } from "react";
 import { Context } from "./Select";
 import styles from "./style.module.css";
+import { Style } from "../helpers";
 
 export interface IOption extends LiHTMLAttributes<HTMLLIElement> {
 	value?: string;
@@ -38,7 +39,7 @@ const Option = ({children, value, disabled, hidden, onClick, ...props}: IOption)
 	if (hidden) return(null);
 
 	const classes = useMemo(() => {
-		const classes = ['ui-select-option'];
+		const classes = [Style('ui-select-option', styles, 'select')];
 		classes.push(styles['option']);
 		if (context.selected === value) classes.push(styles['active'], 'active');
 		if (disabled) classes.push(styles['disabled'], 'disabled');

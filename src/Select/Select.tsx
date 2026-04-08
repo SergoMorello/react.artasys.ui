@@ -7,7 +7,8 @@ import {
 	ChangeEvent,
 	useImperativeHandle,
 	FunctionComponentElement,
-	ReactNode
+	ReactNode,
+	useMemo
 } from "react";
 import Element,{
 	IElement
@@ -16,6 +17,7 @@ import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
 import Arrow from "../Components/Arrow";
 import styles from "./style.module.css";
+import { Style } from "../helpers";
 
 export const Context = createContext({
 	selected: '',
@@ -115,10 +117,13 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 
 	useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
 
-	const classes = [''];
-	classes.push(styles['container'], styles['hidden']);
+	const classes = useMemo(() => {
+		const classes = [Style('container', styles, 'select')];
+		classes.push(styles['hidden']);
+		return classes;
+	}, []);
 	
-	return(<Element {...props} classNameContainer={styles['container-element']}>
+	return(<Element {...props} classNameContainer={Style('container-element', styles, 'select')}>
 		{ (props) => <Context.Provider value={{
 			selected,
 			emptyValue: emptyValue,
@@ -129,10 +134,10 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 			<input {...props} type="hidden" value={selected} onInput={handleInput} ref={inputRef}/>
 			<div className={classes.join(' ')} ref={containerRef} tabIndex={1} onBlur={close}>
 				<div className={styles['select']} onClick={handleClick}>
-					<span className={styles['title']}>{title}</span>
-					<Arrow className={styles['arrow']}/>
+					<span className={Style('title', styles, 'select')}>{title}</span>
+					<Arrow className={Style('arrow', styles, 'select')}/>
 				</div>
-				<ul className={styles['select-list']}>
+				<ul className={Style('select-list', styles, 'select')}>
 					{children}
 				</ul>
 			</div>
