@@ -8,129 +8,148 @@
     border-radius: 6px;
 	font-family: Helvetica;
 	z-index: 0;
-}
 
-.loading-container {
-	position: absolute;
-	left: 16px;
-}
+	.loading-container {
+		position: absolute;
+		left: 16px;
+	}
 
-.container.hidden {
-	border: 0;
-}
+	&.hidden {
+		border: 0;
+	}
 
-.element {
-	align-self: stretch;
-	width: 100%;
-}
+	&.disabled {
+		background-color: var(--neutral-200);
+	}
 
-.element > input, .element > textarea {
-	width: 100%;
-	height: 100%;
-	min-height: 45px;
-	max-height: 500px;
-	margin: 0;
-	padding: 10px;
-    font-size: 20px;
-	box-sizing: border-box;
-	background-color: transparent;
-	border: 1px solid var(--brand-300-primary);
-	border-radius: 6px;
-	outline: none;
-	resize: none;
-	transition: .2s;
-}
+	&.error {
+		border-color: var(--error-primary);
+		color: var(--error-primary);
 
-.element > input:disabled,
-.element > textarea:disabled,
-.element > input:disabled:hover,
-.element > textarea:disabled:hover {
-	background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
-    color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
-	border-color: rgba(118, 118, 118, 0.3);
-	box-shadow:inset 0 0 0 1px rgba(118, 118, 118, 0.3);
-}
+		.placeholder {
+			color: var(--error-primary);
+		}
+	}
 
-.container.disabled {
-	background-color: var(--neutral-200);
-}
+	.element {
+		display: flex;
+		flex-direction: row;
+		align-self: stretch;
+		width: 100%;
+		border: 1px solid var(--brand-300-primary);
+		border-radius: 6px;
+		transition: .2s;
 
-.element > input:-webkit-autofill,
-.element > input:-webkit-autofill:hover, 
-.element > input:-webkit-autofill:focus, 
-.element > input:-webkit-autofill:active{
-	-webkit-background-clip: text;
-}
+		> input,
+		> textarea {
+			width: 100%;
+			height: 100%;
+			min-height: 45px;
+			max-height: 500px;
+			margin: 0;
+			padding: 10px;
+			font-size: 20px;
+			box-sizing: border-box;
+			border: none;
+			background-color: transparent;
+			outline: none;
+			resize: none;
+			transition: .2s;
+		}
 
-.element > input:focus, .element > input:hover {
-	outline: none;
-	box-shadow: inset 0 0 0 1px var(--brand-300-primary);
-}
+		&:has(> input:disabled),
+		&:has(> textarea:disabled),
+		&:has(> input:disabled:hover),
+		&:has(> textarea:disabled:hover) {
+			background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+			color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+			border-color: rgba(118, 118, 118, 0.3);
+			box-shadow: inset 0 0 0 1px rgba(118, 118, 118, 0.3);
+		}
 
-.element > .placeholder {
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	margin-left: 16px;
-	height: 100%;
-	color: var(--neutral-400);
-	font-size: 16px;
-	z-index: -1;
-	user-select: none;
-	transition: transform 0.3s;
-}
+		// > input:disabled,
+		// > textarea:disabled,
+		// > input:disabled:hover,
+		// > textarea:disabled:hover {
+		// 	background-color: light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+		// 	color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+		// 	border-color: rgba(118, 118, 118, 0.3);
+		// 	box-shadow:inset 0 0 0 1px rgba(118, 118, 118, 0.3);
+		// }
 
-.element > textarea ~ .placeholder {
-	max-height: 2em;
-}
+		> input:-webkit-autofill,
+		> input:-webkit-autofill:hover, 
+		> input:-webkit-autofill:focus, 
+		> input:-webkit-autofill:active{
+			-webkit-background-clip: text;
+		}
 
-.element > .placeholder::before {
-	content: "";
-	position: absolute;
-	display: block;
-	width: 100%;
-	height: 5px;
-	background-color: var(--neutral-white);
-	z-index: -1;
-}
+		&:has(> input:focus),
+		&:has(> input:hover) {
+			outline: none;
+			box-shadow: inset 0 0 0 1px var(--brand-300-primary);
+		}
 
-.element > input:required ~ .placeholder::after {
-	content: "*";
-}
+		// > input:focus,
+		// > input:hover {
+		// 	outline: none;
+		// 	box-shadow: inset 0 0 0 1px var(--brand-300-primary);
+		// }
 
-/* Date */
-.element > input[type="date"]::-webkit-calendar-picker-indicator {
-	cursor: pointer;
-	border-radius: 4px;
-	margin-right: 2px;
-	opacity: 0.7;
-	filter: invert(0.8);
-}
+		> .placeholder {
+			position: absolute;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			top: 0;
+			margin-left: 16px;
+			height: 100%;
+			color: var(--neutral-400);
+			font-size: 16px;
+			z-index: -1;
+			user-select: none;
+			transition: transform 0.3s;
+		}
 
-.element > input[type="date"]::-webkit-calendar-picker-indicator:hover {
-	opacity: 1
-}
+		> textarea ~ .placeholder {
+			max-height: 2em;
+		}
 
-.element > input[type="date"] ~ .placeholder,
-.element > input:focus ~ .placeholder,
-.element > textarea:focus ~ .placeholder,
-.element > input:not([value=""]) ~ .placeholder,
-.element > textarea:not(:empty) ~ .placeholder,
-.element > input:not(:empty) ~ .placeholder {
-	transform: translate(-10%, -50%) scale(0.8);
-	z-index: 0;
-}
+		> .placeholder::before {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 100%;
+			height: 5px;
+			background-color: var(--neutral-white);
+			z-index: -1;
+		}
 
-.container.error {
-	border-color: var(--error-primary);
-}
+		> input:required ~ .placeholder::after {
+			content: "*";
+		}
 
-.container.error .placeholder {
-	color: var(--error-primary);
-}
+		/* Date */
+		> input[type="date"]::-webkit-calendar-picker-indicator {
+			cursor: pointer;
+			border-radius: 4px;
+			margin-right: 2px;
+			opacity: 0.7;
+			filter: invert(0.8);
+		}
 
-.error {
-	color: var(--error-primary);
+		> input[type="date"]::-webkit-calendar-picker-indicator:hover {
+			opacity: 1
+		}
+
+		> input[type="date"] ~ .placeholder,
+		> input:focus ~ .placeholder,
+		> textarea:focus ~ .placeholder,
+		> input:not([value=""]) ~ .placeholder,
+		> textarea:not(:empty) ~ .placeholder,
+		> input:not(:empty) ~ .placeholder {
+			transform: translate(-10%, -50%) scale(0.8);
+			z-index: 0;
+		}
+	}
 }

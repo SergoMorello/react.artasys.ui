@@ -6,7 +6,8 @@ import {
 	useEffect,
 	createContext,
 	Children,
-	type FocusEvent
+	type FocusEvent,
+	useMemo
 } from "react";
 import styles from "./style.module.scss";
 import Arrow from "../Components/Arrow";
@@ -21,7 +22,7 @@ export const Context = createContext<TChildrenAction>({
 	close: () => {}
 });
 
-export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>> {
+export interface DropdownProps extends UIComponent<AllHTMLAttributes<HTMLDivElement>> {
 	direction?: 'down' | 'up';
 	position?: 'left' | 'right';
 	split?: boolean;
@@ -34,13 +35,31 @@ export interface IDropdown extends UIComponent<AllHTMLAttributes<HTMLDivElement>
 	onHide?: () => void;
 };
 
-const Dropdown = ({children, className, items, arrow = true, direction = 'down', position = 'right', split = false, disabled, hover = false, enableRerenderItems = true, onShow, onHide, ...props}: IDropdown) => {
+const Dropdown = ({
+	children,
+	className,
+	items,
+	arrow = true,
+	direction = 'down',
+	position = 'right',
+	split = false,
+	disabled,
+	hover = false,
+	enableRerenderItems = true,
+	onShow,
+	onHide,
+	...props
+}: DropdownProps) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const [isOpen, setOpen] = useState(false);
 
 	const close = () => {
 		setOpen(false);
+	};
+
+	const open = () => {
+		setOpen(true);
 	};
 
 	const toggle = () => {
@@ -65,13 +84,14 @@ const Dropdown = ({children, className, items, arrow = true, direction = 'down',
 	};
 
 	const handleMouseEnter = () => {
-		if (!hover || isOpen) return;
-		hoverTimeout.current = setTimeout(toggle, 50);
+		if (!hover || isOpen || hoverTimeout.current) return;
+		hoverTimeout.current = setTimeout(open, 50);
 	};
 
 	const handleMouseOut = () => {
 		if (hoverTimeout.current) {
 			clearTimeout(hoverTimeout.current);
+			hoverTimeout.current = null;
 		}
 	};
 
@@ -92,16 +112,27 @@ const Dropdown = ({children, className, items, arrow = true, direction = 'down',
 		}
 	}, [isOpen]);
 
-	const classes = ['ui-dropdown'];
-	classes.push(styles['container']);
-	if (className) classes.push(className);
-	if (direction) classes.push(styles[direction]);
-	if (position) classes.push(styles[position]);
+	const classes = useMemo(() => {
+		const classes = ['ui-dropdown'];
+		classes.push(styles['container']);
+		if (className) classes.push(className);
+		if (direction) classes.push(styles[direction]);
+		if (position) classes.push(styles[position]);
+		return classes.join(' ');
+	}, [className, direction, position]);
 
 	return(<Context.Provider value={{
 		close
 	}}>
-		<div {...props} className={classes.join(' ')} ref={containerRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseOut} tabIndex={1} onBlur={handleBlur}>
+		<div
+			{...props}
+			className={classes}
+			ref={containerRef}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseOut}
+			tabIndex={1}
+			onBlur={handleBlur}
+		>
 			{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			<div onClick={handleClick} className={'ui-dropdown-block' + (isOpen ? ' ' + styles['hide'] : '')}>
 				{children}

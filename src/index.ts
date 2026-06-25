@@ -3,7 +3,7 @@ import Form,{
 	FormElement
 } from "./Form";
 import Element,{
-	IElement
+	ElementProps
 } from "./Form/Element";
 import Input from "./Input";
 import TextArea from "./TextArea";
@@ -66,7 +66,7 @@ export type {
 	IUploadImages,
 	IImage,
 	TImageData,
-	IElement,
+	ElementProps,
 	ButtonProps,
 	IFileInput,
 };

@@ -11,7 +11,7 @@ import {
 	useMemo
 } from "react";
 import Element,{
-	IElement
+	ElementProps
 } from "../Form/Element";
 import type { IOptgroup } from "./Optgroup";
 import type { IOption } from "./Option";
@@ -29,7 +29,7 @@ export const Context = createContext({
 
 export type TOptionElement = FunctionComponentElement<IOption> | FunctionComponentElement<IOption>[] | ReactNode;
 
-export interface ISelect extends Omit<IElement, 'children'> {
+export interface ISelect extends Omit<ElementProps, 'children'> {
 	children?: TOptionElement | FunctionComponentElement<IOptgroup> | FunctionComponentElement<IOptgroup>[];
 	onChangeSelect?: (value: string) => void;
 };

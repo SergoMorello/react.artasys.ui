@@ -1,7 +1,7 @@
 import Element,{
-	IElement
+	ElementProps
 } from "./Element";
 export type {
-	IElement
+	ElementProps
 }
 export default Element;

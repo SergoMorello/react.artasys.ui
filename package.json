@@ -5,6 +5,7 @@
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "vite build",
@@ -12,6 +13,14 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "prepublishOnly": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./dist/styles.css": "./dist/styles.css"
   },
   "jest": {
     "transform": {

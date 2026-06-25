@@ -6,10 +6,10 @@ import React, {
     ChangeEvent,
     useImperativeHandle,
 } from "react";
-import Element, { IElement } from "../Form/Element";
+import Element, { ElementProps } from "../Form/Element";
 import { UIComponent } from "../ui-types";
 
-export interface ITextArea extends UIComponent<IElement<HTMLTextAreaElement>> {
+export interface ITextArea extends UIComponent<ElementProps<HTMLTextAreaElement>> {
     onChangeText?: (text: string) => void;
     wait?: boolean;
 }

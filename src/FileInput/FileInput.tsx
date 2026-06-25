@@ -1,9 +1,9 @@
 import { ChangeEvent, ReactNode, useCallback, useRef, useState } from 'react';
-import Element, { IElement } from '../Form/Element';
+import Element, { ElementProps } from '../Form/Element';
 import { UIComponent } from '../ui-types';
 import styles from './style.module.scss';
 
-export interface IFileInput extends UIComponent<IElement<HTMLInputElement>> {
+export interface IFileInput extends UIComponent<ElementProps<HTMLInputElement>> {
     onChangeFiles?: (files: FileList | null) => void;
     accept?: string;
     multiple?: boolean;

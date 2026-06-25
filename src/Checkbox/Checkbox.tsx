@@ -3,12 +3,12 @@ import {
 	forwardRef
 } from "react";
 import Element,{
-	IElement
+	ElementProps
 } from "../Form/Element";
 import styles from "./style.module.scss";
 import { UIComponent } from "../ui-types";
 
-export interface ICheckbox extends UIComponent<IElement<HTMLInputElement>> {
+export interface ICheckbox extends UIComponent<ElementProps<HTMLInputElement>> {
 	type?: 'checkbox' | 'radio';
 	onChecked?: (status: boolean, value?: unknown) => void;
 }
