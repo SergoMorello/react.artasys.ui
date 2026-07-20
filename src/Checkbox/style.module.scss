@@ -36,14 +36,11 @@
 		}
 		&::before {
 			content: "";
-			position: absolute;
-			top: 0;
 			width: 35%;
 			height: 70%;
 			border: solid var(--neutral-white);
 			border-width: 0 2px 2px 0;
-			transform: rotate( 45deg);
-			scale: 0;
+			transform: rotate(45deg);
 			opacity: 0;
 			transition: scale 0.1s, opacity 0.1s;
 		}

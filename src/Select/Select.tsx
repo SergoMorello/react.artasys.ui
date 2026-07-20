@@ -123,7 +123,11 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 		return classes;
 	}, []);
 	
-	return(<Element {...props} classNameContainer={Style('container-element', styles, 'select')}>
+	return(<Element
+		{...props}
+		classNameContainer={Style('container-element', styles, 'select')}
+		withBorder
+	>
 		{ (props) => <Context.Provider value={{
 			selected,
 			emptyValue: emptyValue,

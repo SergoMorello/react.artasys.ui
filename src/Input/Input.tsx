@@ -9,6 +9,7 @@ import Element,{
 	ElementProps
 } from "../Form/Element";
 import { UIComponent } from "../ui-types";
+import styles from "./styles.module.scss";
 
 
 export interface InputProps extends UIComponent<ElementProps<HTMLInputElement>> {
@@ -54,7 +55,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({
 		setCurrentValue(value ? String(value) : '');
 	}, [props.value, formvalue]);
 
-	return(<Element {...props} wait={wait}>
+	return(<Element
+		{...props}
+		wait={wait}
+		classNameContainerElement={styles['container']}
+		withBorder
+	>
 		{ (props) => 
 			<input
 			{...props}

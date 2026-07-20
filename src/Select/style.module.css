@@ -5,6 +5,7 @@
 }
 
 .container {
+	flex: 1;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -15,6 +16,7 @@
 }
 
 .select {
+	flex: 1;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -94,6 +96,7 @@
 }
 
 .title {
+	flex: 1;
 	color: var(--neutral-900-text);
 }
 

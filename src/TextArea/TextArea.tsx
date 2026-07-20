@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import Element, { ElementProps } from "../Form/Element";
 import { UIComponent } from "../ui-types";
+import styles from "./style.module.scss";
 
 export interface ITextArea extends UIComponent<ElementProps<HTMLTextAreaElement>> {
     onChangeText?: (text: string) => void;
@@ -55,7 +56,12 @@ const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(
         const value = wait ? "" : currentValue;
 
         return (
-            <Element {...props} wait={wait}>
+            <Element
+				{...props}
+				wait={wait}
+				classNameContainerElement={styles['container']}
+				withBorder
+			>
                 {(props) => (
                     <textarea
                         {...props}
