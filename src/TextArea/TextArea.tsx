@@ -13,6 +13,7 @@ import styles from "./style.module.scss";
 export interface ITextArea extends UIComponent<ElementProps<HTMLTextAreaElement>> {
     onChangeText?: (text: string) => void;
     wait?: boolean;
+	value?: string;
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, ITextArea>(

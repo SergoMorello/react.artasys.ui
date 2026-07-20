@@ -18,6 +18,7 @@ export interface InputProps extends UIComponent<ElementProps<HTMLInputElement>> 
 	wait?: boolean;
 	children?: React.ReactNode;
 	disabled?: boolean;
+	value?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({

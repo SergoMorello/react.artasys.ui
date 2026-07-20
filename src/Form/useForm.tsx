@@ -1,7 +1,7 @@
 // useForm.tsx
 import { useState, FunctionComponent } from "react";
 import type { TError, TUseFormRegisterReturn } from "./types";
-import styles from "./style.module.css";
+import styles from "./style.module.scss";
 import {
   useForm as useHookForm,
   UseFormReturn,

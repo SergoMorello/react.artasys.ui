@@ -1,5 +1,5 @@
-import { FormHTMLAttributes, ReactNode, FormEvent } from 'react';
-import styles from './style.module.css';
+import { FormHTMLAttributes, ReactNode, FormEvent, useMemo } from 'react';
+import styles from './style.module.scss';
 
 import Spinner,{
 	type SpinnerProps
@@ -23,13 +23,18 @@ const Form = ({children, wait, progress, progressRadius = true, className, onSub
 		}
 	};
 
-	const classes = [];
+	const classNames = useMemo(() => {
+		const array = [styles['container']];
+		if (wait) array.push(styles['wait']);
+		if (className) array.push(className);
+		return array.join(' ');
+	}, []);
 
-	classes.push(styles['container']);
-	if (wait) classes.push(styles['wait']);
-	if (className) classes.push(className);
-
-	return(<form {...props} onSubmit={submit} className={classes.join(' ')}>
+	return(<form
+		{...props}
+		onSubmit={submit}
+		className={classNames}
+	>
 		{children}
 		<div className={styles['wait-indicator']}>
 			{typeof progress === 'number' ? <Progress radius={progressRadius} value={progress}/> : <Spinner/>}

@@ -9,7 +9,7 @@ import {
 import styles from "./style.module.scss";
 import Loading from "../../Loading";
 
-export interface ElementProps<T = any> extends Omit<AllHTMLAttributes<T>, 'children'> {
+export interface ElementProps<T = any> extends Omit<AllHTMLAttributes<T>, 'children' | 'value'> {
 	children?: ((props: AllHTMLAttributes<T>) => ReactElement) | AllHTMLAttributes<T>["children"];
 	error?: string;
 	formvalue?: string | number;
