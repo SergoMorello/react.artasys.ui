@@ -5,7 +5,6 @@
     align-items: center;
 	width: 100%;
 	position: relative;
-    border-radius: 6px;
 	font-family: Helvetica;
 	z-index: 0;
 
@@ -31,7 +30,7 @@
 		}
 	}
 
-	&.border {
+	&.border > .element {
 		border: 1px solid var(--brand-300-primary);
 		border-radius: 6px;
 	}
