@@ -32,6 +32,7 @@ export type TOptionElement = FunctionComponentElement<IOption> | FunctionCompone
 export interface ISelect extends Omit<ElementProps, 'children'> {
 	children?: TOptionElement | FunctionComponentElement<IOptgroup> | FunctionComponentElement<IOptgroup>[];
 	onChangeSelect?: (value: string) => void;
+	value?: string;
 };
 
 const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect, value, formvalue, ...props}, ref) => {
@@ -117,10 +118,10 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 
 	useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
 
-	const classes = useMemo(() => {
-		const classes = [Style('container', styles, 'select')];
-		classes.push(styles['hidden']);
-		return classes;
+	const classNames = useMemo(() => {
+		const array = [Style('container', styles, 'select')];
+		array.push(styles['hidden']);
+		return array.join(' ');
 	}, []);
 	
 	return(<Element
@@ -136,7 +137,7 @@ const Select = forwardRef<HTMLInputElement, ISelect>(({children, onChangeSelect,
 			setTitle
 		}}>
 			<input {...props} type="hidden" value={selected} onInput={handleInput} ref={inputRef}/>
-			<div className={classes.join(' ')} ref={containerRef} tabIndex={1} onBlur={close}>
+			<div className={classNames} ref={containerRef} tabIndex={1} onBlur={close}>
 				<div className={styles['select']} onClick={handleClick}>
 					<span className={Style('title', styles, 'select')}>{title}</span>
 					<Arrow className={Style('arrow', styles, 'select')}/>

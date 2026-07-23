@@ -12,17 +12,24 @@ import { UIComponent } from "../ui-types";
 export interface CheckboxProps<T extends string | number | boolean> extends Omit<UIComponent<ElementProps<HTMLInputElement>>, 'value'> {
 	type?: 'checkbox' | 'radio';
 	value?: T;
-	onChecked?: (status: boolean, value?: T) => void;
+	onChecked?: (status: boolean, value: T) => void;
 }
 
-const CheckboxInput = <T extends string | number | boolean> ({type = 'checkbox', hiddenContainer = true, placeholder, onChecked, onChange, ...props}: CheckboxProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
+const CheckboxInput = <T extends string | number | boolean> ({
+	type = 'checkbox',
+	hiddenContainer = true,
+	placeholder,
+	onChecked,
+	onChange,
+	...props
+}: CheckboxProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
 
 const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 	if (typeof onChange === 'function') {
 		onChange(event);
 	}
 	if (typeof onChecked === 'function') {
-		onChecked(event.target.checked, props.value);
+		onChecked(event.target.checked, props.value as T);
 	}
 };
 
