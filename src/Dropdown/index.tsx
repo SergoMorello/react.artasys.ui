@@ -6,23 +6,24 @@ import {
 } from "react";
 import {
 	default as DropdownUI,
-	IDropdown
+	type DropdownProps
 } from "./Dropdown";
-import Item,{
-	IItem
-} from "./Item";
+import {
+	DropdownItem,
+	DropdownItemProps
+} from "./DropdownItem";
 
-interface StaticComponent extends ForwardRefExoticComponent<IDropdown & RefAttributes<HTMLInputElement>> {
-	Item: FC<IItem>;
+interface StaticComponent extends ForwardRefExoticComponent<DropdownProps & RefAttributes<HTMLInputElement>> {
+	Item: FC<DropdownItemProps>;
 };
 
 const Dropdown: StaticComponent = {
-	...forwardRef<HTMLInputElement, IDropdown>(({...args}, ref): JSX.Element => <DropdownUI {...args}/>),
-	Item
+	...forwardRef<HTMLInputElement, DropdownProps>(({...args}, ref): JSX.Element => <DropdownUI {...args}/>),
+	Item: DropdownItem
 } as StaticComponent;
 
 export {
-	Item as DropdownItem
+	DropdownItem
 };
 
 export default Dropdown;

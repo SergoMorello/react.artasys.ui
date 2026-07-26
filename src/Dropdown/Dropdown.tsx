@@ -7,15 +7,16 @@ import {
 	createContext,
 	Children,
 	type FocusEvent,
-	useMemo
+	useMemo,
+	MouseEvent
 } from "react";
 import styles from "./style.module.scss";
 import Arrow from "../Components/Arrow";
 import type {
-	IItem,
+	DropdownItemProps,
 	TChildrenAction
-} from "./Item";
-import Items from "./Items";
+} from "./DropdownItem";
+import {DropdownItems} from "./DropdownItems";
 import { UIComponent } from "../ui-types";
 
 export const Context = createContext<TChildrenAction>({
@@ -28,7 +29,7 @@ export interface DropdownProps extends UIComponent<AllHTMLAttributes<HTMLDivElem
 	split?: boolean;
 	hover?: boolean;
 	arrow?: boolean;
-	items?: FunctionComponentElement<IItem> | FunctionComponentElement<IItem>[];
+	items?: FunctionComponentElement<DropdownItemProps> | FunctionComponentElement<DropdownItemProps>[];
 	disabled?: boolean;
 	enableRerenderItems?: boolean;
 	onShow?: () => void;
@@ -73,7 +74,10 @@ const Dropdown = ({
 		toggle();
 	};
 
-	const handleClick = () => {
+	const handleClick = (event: MouseEvent) => {
+		if (!isOpen) {
+			event.preventDefault();
+		}
 		if (hoverTimeout.current) return;
 		if (!split || hover) toggle();
 	};
@@ -110,15 +114,17 @@ const Dropdown = ({
 				onHide();
 			}
 		}
-	}, [isOpen]);
+	}, [isOpen, onShow, onHide]);
 
-	const classes = useMemo(() => {
-		const classes = ['ui-dropdown'];
-		classes.push(styles['container']);
-		if (className) classes.push(className);
-		if (direction) classes.push(styles[direction]);
-		if (position) classes.push(styles[position]);
-		return classes.join(' ');
+	const classNames = useMemo(() => {
+		const array = ['ui-dropdown'];
+
+		array.push(styles['container']);
+		if (className) array.push(className);
+		if (direction) array.push(styles[direction]);
+		if (position) array.push(styles[position]);
+
+		return array.join(' ');
 	}, [className, direction, position]);
 
 	return(<Context.Provider value={{
@@ -126,19 +132,28 @@ const Dropdown = ({
 	}}>
 		<div
 			{...props}
-			className={classes}
+			className={classNames}
 			ref={containerRef}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseOut}
 			tabIndex={1}
 			onBlur={handleBlur}
 		>
-			{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
-			<div onClick={handleClick} className={'ui-dropdown-block' + (isOpen ? ' ' + styles['hide'] : '')}>
-				{children}
+			<div className={styles['content']} onClick={handleClick}>
+				{(position === 'left' && !disabled) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
+				<div
+					className={styles['block'] + ' ui-dropdown-block' + (isOpen ? ' ' + styles['hide'] : '')}
+				>
+					{children}
+				</div>
+				{(position === 'right' && !disabled && arrow) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
 			</div>
-			{(position === 'right' && !disabled && arrow) && <Arrow className={styles['arrow']} onClick={handleClickArrow}/>}
-			<Items isOpen={isOpen} disabled={disabled} enableRerenderItems={enableRerenderItems} items={items}/>
+			<DropdownItems
+				isOpen={isOpen}
+				disabled={disabled}
+				enableRerenderItems={enableRerenderItems}
+				items={items}
+			/>
 		</div>
 	</Context.Provider>);
 };
